@@ -1,0 +1,49 @@
+---
+description: 项目未完成与加分项；相关话题时主动提醒
+alwaysApply: true
+---
+
+# 未完成 backlog
+
+当用户提到下列任一话题时，**主动简要提醒**对应未完成项，不要等用户再问：
+第 12/13/14 课、合成分回测、baostock/财务/估值、模块 6、平滑换因子、UBL、还缺什么/下一步、加分项/可选缺口、实盘。
+
+## 主链路（已接通，勿再当缺口）
+1. **合成分 → 含成本回测入口已接通（2026-09-15）**
+   - `python main.py --backtest --strategy composite`：读 `factors/composite`
+   - `python main.py --backtest --strategy multifactor`：第13课滚动权重 + raw/neu
+   - `--live` / `--backtest` 默认策略已为 composite；可选：管线整段估权与 multifactor 滚动合成再贴紧
+
+## 数据（解封后再做，勿频繁重试 baostock）
+2. **财务 cache/PIT 续拉**：cache 曾约 4021，待补约 1225（workers=1 进行中/可续）；近窗 PIT≈247 日已有
+3. **估值近窗**：已齐约 247 日（勿再当缺口）
+4. **模块 6**：代码已落地；仅 `m6_bp` 过门，EP/ROE/PEG/`m6_dy` inactive；组合层股息&PEG 未做
+
+## 因子研究后续
+5. **按日期继续扫研报 PDF**：假说 → 公式 → 验证门 → `registry`
+6. **UBL**：已调参 active（z=10）；OOS 显示加进合成变差 → **不进冻结名单**
+7. **平滑换因子**：等名单稳定后再做；日更已用 `composite_universe.json` 冻结
+8b. **冻结合成**：`b_pool_pv_32_oos`（B33 去 `fz_panic_ret_20`，OOS 优胜）
+
+## 可选小缺口（工程）
+8. ~~剔上市不满 1 年、去极值改 MAD、过户费~~（2026-09-23 已落地；上市日用 data_daily 首次出现近似）
+
+## 后续可做 / 加分项
+### 第12课
+9. U 型/非线性：散点图、互信息（课件进阶）
+10. 滚动 IC 默认 **20/60** 双窗口
+11. 评分前指标标准化到 [0,1]
+12. 评分可选 p39 五维 / Cost-adjusted IC
+
+### 第13课
+13. 主 `factor_pipeline` 滚动窗估权（现整段；滚动在 multifactor）
+14. `optimization_objectives`：OOS IC、超额/排名标签、换手进目标分
+15. 约束：合成权重侧行业/风格中性；显式 IC−cost_penalty
+16. 线性 Ridge/Lasso：**滚动窗训练**（现全样本静态）；本脚本内 VIF
+17. 回测：`composite` 文件路径与 `multifactor` 现算滚动合成再合一；IC↔净值系统对照实验
+18. 实盘 13.2：认知清单即可；自动下单/风控告警非本仓库必做。可选：模拟盘流水线。`--live`/`--backtest` 默认已是 composite。
+
+## 已完成、不要再提为缺口
+印花税 0.05%、因子 Parquet、市值+行业中性化、注册表/验证门、IC×调仓成本对照、研报→registry、GFN active、估值短窗。
+第12课六步主实现已对齐课包。
+第13课 13.1 七模块脚本已齐 + 合成分/multifactor 回测入口；13.2 为实盘认知（无柜台代码要求）。

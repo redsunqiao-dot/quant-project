@@ -1,0 +1,6930 @@
+{
+  "factors": [
+    {
+      "name": "cj_corr_vol_close_20",
+      "version": "1.0",
+      "desc": "长江高波：量价相关取负",
+      "formula": "neg_corr(volume,close,20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260407-长江证券-高波环境下的有效因子.pdf",
+      "hypothesis": "量价同步偏高或反映拥挤/反转信息",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "cj_corr_vol_close_20",
+      "card_path": "factors/research_cards/cj_highvol_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.027469257137197087,
+        "ic_std": 0.0638680068323894,
+        "ic_ir": 0.430094166071057,
+        "mono_mean": 0.0812412831241283,
+        "turnover_mean": 0.03994134490026805
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.028216852472545233,
+          "ic_ir": 0.4440890599968916
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.028000174122395922,
+          "ic_ir": 0.4413323446874498
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.028220930818478544,
+          "ic_ir": 0.4456353661751408
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.028220930818478544,
+          "ic_ir": 0.4456353661751408
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.027469257137197087,
+          "ic_ir": 0.430094166071057
+        }
+      ]
+    },
+    {
+      "name": "cj_mom_240_skip20",
+      "version": "1.0",
+      "desc": "长江高波：长期动量剔近20日",
+      "formula": "close_{t-20}/close_{t-240}-1",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20260407-长江证券-高波环境下的有效因子.pdf",
+      "hypothesis": "中长期价格趋势在剔近月噪声后仍有持续性",
+      "windows": {
+        "long": 240,
+        "skip": 20
+      },
+      "checklist_score": 8,
+      "impl": "cj_mom_240_skip20",
+      "card_path": "factors/research_cards/cj_highvol_factors.md",
+      "last_metrics": {
+        "ic_mean": -0.007205236741134573,
+        "ic_std": 0.1253704025718396,
+        "ic_ir": -0.05747159292246699,
+        "mono_mean": 0.07303290414878397,
+        "turnover_mean": 0.008376202033807834
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.008517066754195533,
+          "ic_ir": -0.06821479202243393
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.007277388792369987,
+          "ic_ir": -0.05816305258555369
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.007946029535575034,
+          "ic_ir": -0.06358754822351795
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.007205236741134573,
+          "ic_ir": -0.05747159292246699
+        }
+      ]
+    },
+    {
+      "name": "cj_rank_mom_220",
+      "version": "1.0",
+      "desc": "长江高波：排序动量约220日",
+      "formula": "sum(cs_rank(ret)) over [t-240,t-20]",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20260407-长江证券-高波环境下的有效因子.pdf",
+      "hypothesis": "截面相对强弱的时间累积",
+      "windows": {
+        "long": 240,
+        "skip": 20
+      },
+      "checklist_score": 8,
+      "impl": "cj_rank_mom_220",
+      "card_path": "factors/research_cards/cj_highvol_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.015014075044292726,
+        "ic_std": 0.08780284899796509,
+        "ic_ir": 0.1709975839695212,
+        "mono_mean": 0.1284692417739628,
+        "turnover_mean": 0.005590952724398566
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.014835762183386314,
+          "ic_ir": 0.17098374959798102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.015393403043890953,
+          "ic_ir": 0.17636609701102307
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.014993805506057062,
+          "ic_ir": 0.1718505791850579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.015014075044292726,
+          "ic_ir": 0.1709975839695212
+        }
+      ]
+    },
+    {
+      "name": "cj_ret_skew_20",
+      "version": "1.0",
+      "desc": "长江高波：收益偏度取负",
+      "formula": "neg_skew(ret,20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260407-长江证券-高波环境下的有效因子.pdf",
+      "hypothesis": "收益分布偏斜刻画尾部风险/过度反应",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "cj_ret_skew_20",
+      "card_path": "factors/research_cards/cj_highvol_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.0213368992802576,
+        "ic_std": 0.0508632344362974,
+        "ic_ir": 0.41949552592807593,
+        "mono_mean": 0.07503486750348673,
+        "turnover_mean": 0.06937280813799443
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02141322950050754,
+          "ic_ir": 0.4240573977893917
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.021390770473221563,
+          "ic_ir": 0.424015305845491
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.02155804075168579,
+          "ic_ir": 0.4285565526998382
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.02155804075168579,
+          "ic_ir": 0.4285565526998382
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.0213368992802576,
+          "ic_ir": 0.41949552592807593
+        }
+      ]
+    },
+    {
+      "name": "cj_turn_cv_20",
+      "version": "1.0",
+      "desc": "长江高波：换手变异系数",
+      "formula": "std(turn)/mean(turn)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20260407-长江证券-高波环境下的有效因子.pdf",
+      "hypothesis": "成交活跃度不稳定蕴含交易行为信息",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "cj_turn_cv_20",
+      "card_path": "factors/research_cards/cj_highvol_factors.md",
+      "last_metrics": {
+        "ic_mean": -0.03650020823140928,
+        "ic_std": 0.056599873263341996,
+        "ic_ir": -0.6448814480835481,
+        "mono_mean": -0.10064377682403434,
+        "turnover_mean": 0.04225728191903729
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.035484733043355976,
+          "ic_ir": -0.6340073310760316
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.03592999702594902,
+          "ic_ir": -0.6375303849735313
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.03621553489108535,
+          "ic_ir": -0.643190928831934
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.03650020823140928,
+          "ic_ir": -0.6448814480835481
+        }
+      ]
+    },
+    {
+      "name": "cjx_intraday_rev_20",
+      "version": "1.0",
+      "desc": "建投：日内收益反转",
+      "formula": "neg(mean(close/open-1,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20251125-中信建投-隔夜日内异象.pdf",
+      "hypothesis": "日内过热后回落",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "cjx_intraday_rev_20",
+      "card_path": "factors/research_cards/daily_batch_illiq_oi_anchor.md",
+      "last_metrics": {
+        "ic_mean": 0.044170297289163454,
+        "ic_std": 0.105361660292507,
+        "ic_ir": 0.41922552441312194,
+        "mono_mean": 0.08528591352859136,
+        "turnover_mean": 0.060145478996721194
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.0441638635513597,
+          "ic_ir": 0.42013283570943805
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.044277203954354485,
+          "ic_ir": 0.4212598802023575
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.044277203954354485,
+          "ic_ir": 0.4212598802023575
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.044170297289163454,
+          "ic_ir": 0.41922552441312194
+        }
+      ]
+    },
+    {
+      "name": "cjx_oi_spread_20",
+      "version": "1.0",
+      "desc": "建投：隔夜减日内均值",
+      "formula": "mean(overnight-intraday,20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20251125-中信建投-隔夜日内异象.pdf",
+      "hypothesis": "隔夜日内结构背离",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "cjx_oi_spread_20",
+      "card_path": "factors/research_cards/daily_batch_illiq_oi_anchor.md",
+      "last_metrics": {
+        "ic_mean": 0.03970710689042092,
+        "ic_std": 0.08819416792118155,
+        "ic_ir": 0.45022372597139143,
+        "mono_mean": 0.07747559274755929,
+        "turnover_mean": 0.05117032103131695
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.039996271932491216,
+          "ic_ir": 0.45504281799667523
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.03997101763275091,
+          "ic_ir": 0.4542382889555206
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.040030747404114955,
+          "ic_ir": 0.4549272461407715
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.040030747404114955,
+          "ic_ir": 0.4549272461407715
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.03970710689042092,
+          "ic_ir": 0.45022372597139143
+        }
+      ]
+    },
+    {
+      "name": "cjx_overnight_mom_20",
+      "version": "1.0",
+      "desc": "建投：隔夜收益动量",
+      "formula": "mean(open/close_lag-1,20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20251125-中信建投-隔夜日内异象.pdf",
+      "hypothesis": "隔夜动量分量",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "cjx_overnight_mom_20",
+      "card_path": "factors/research_cards/daily_batch_illiq_oi_anchor.md",
+      "last_metrics": {
+        "ic_mean": 0.015614301490488947,
+        "ic_std": 0.053943257333509353,
+        "ic_ir": 0.2894578907972137,
+        "mono_mean": 0.10522174535050072,
+        "turnover_mean": 0.04740092506470654
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.015920082277781942,
+          "ic_ir": 0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.015928976200543985,
+          "ic_ir": 0.29711049037560294
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.015857067281113548,
+          "ic_ir": 0.295207258383996
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.015857067281113548,
+          "ic_ir": 0.295207258383996
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.015614301490488947,
+          "ic_ir": 0.2894578907972137
+        }
+      ]
+    },
+    {
+      "name": "cjx_overnight_vol_20",
+      "version": "1.0",
+      "desc": "建投：隔夜波动取负",
+      "formula": "neg(std(overnight,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20251125-中信建投-隔夜日内异象.pdf",
+      "hypothesis": "隔夜波动过大不利",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "cjx_overnight_vol_20",
+      "card_path": "factors/research_cards/daily_batch_illiq_oi_anchor.md",
+      "last_metrics": {
+        "ic_mean": 0.033747568783568424,
+        "ic_std": 0.14451871828455023,
+        "ic_ir": 0.2335169394259443,
+        "mono_mean": 0.00418410041841004,
+        "turnover_mean": 0.02149576962104349
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.036885373436476736,
+          "ic_ir": 0.25710107251687053
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.03478849324082686,
+          "ic_ir": 0.24102954473663565
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03540833360638155,
+          "ic_ir": 0.24611452338032422
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03540833360638155,
+          "ic_ir": 0.24611452338032422
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.033747568783568424,
+          "ic_ir": 0.2335169394259443
+        }
+      ]
+    },
+    {
+      "name": "cpv_ubl_wr",
+      "version": "1.0",
+      "desc": "东吴CPV：影线+威廉等权综合（第十一课样板）",
+      "formula": "wU*U + wB*B + wL*L + wWR*WR + wT*TREND",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "东吴金工：上下影线，蜡烛好还是威廉好？",
+      "hypothesis": "价量形态与威廉位置刻画短期供需失衡",
+      "windows": {
+        "lookback_short": 5,
+        "lookback_long": 20
+      },
+      "checklist_score": 8,
+      "impl": "cpv",
+      "card_path": "factors/research_cards/cpv_ubl_wr.md"
+    },
+    {
+      "name": "ct_resid_mom_60",
+      "version": "1.0",
+      "desc": "截面残差收益60日累积",
+      "formula": "sum(ret-cs_mean,60)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "财通特质动量简化（非FF残差）",
+      "hypothesis": "特异价格趋势有持续性",
+      "windows": {
+        "window": 60
+      },
+      "checklist_score": 8,
+      "impl": "ct_resid_mom_60",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": -0.039963540747577776,
+        "ic_std": 0.1050400851365846,
+        "ic_ir": -0.38045990438424354,
+        "mono_mean": -0.023605150214592283,
+        "turnover_mean": 0.023515814708937575
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.040039850189874965,
+          "ic_ir": -0.3840507626007455
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.039704972758834854,
+          "ic_ir": -0.3795045519089993
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.040295141391504086,
+          "ic_ir": -0.385783288139095
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.040295141391504086,
+          "ic_ir": -0.385783288139095
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.039963540747577776,
+          "ic_ir": -0.38045990438424354
+        }
+      ]
+    },
+    {
+      "name": "db_csk_comp_120",
+      "version": "1.0",
+      "desc": "东北：上行减下行协偏度截面z差",
+      "formula": "z(CSK_UP)-z(CSK_DOWN)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20240311-东北证券-股票收益的协偏度因子.pdf",
+      "hypothesis": "上下行协偏度合成捕获更完整溢价",
+      "windows": {
+        "window": 120
+      },
+      "checklist_score": 8,
+      "impl": "db_csk_comp_120",
+      "card_path": "factors/research_cards/daily_batch10_csk_gk.md",
+      "last_metrics": {
+        "ic_mean": 0.027210544021533865,
+        "ic_std": 0.05888332942857576,
+        "ic_ir": 0.4621094677490966,
+        "mono_mean": 0.09253835425383543,
+        "turnover_mean": 0.012802960255001824
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02687274390474647,
+          "ic_ir": 0.46371814866899763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02687274390474647,
+          "ic_ir": 0.46371814866899763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.02733480386179344,
+          "ic_ir": 0.4678076812917576
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.02720993314846099,
+          "ic_ir": 0.4647302915177618
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.02720993314846099,
+          "ic_ir": 0.4647302915177618
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.027210544021533865,
+          "ic_ir": 0.4621094677490966
+        }
+      ]
+    },
+    {
+      "name": "db_csk_down_120",
+      "version": "1.0",
+      "desc": "东北：120日下行协偏度取负",
+      "formula": "neg(CSK_XYY|y<ey)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20240311-东北证券-股票收益的协偏度因子.pdf",
+      "hypothesis": "下行极端敏感度更高，负溢价更强",
+      "windows": {
+        "window": 120
+      },
+      "checklist_score": 8,
+      "impl": "db_csk_down_120",
+      "card_path": "factors/research_cards/daily_batch9_coskew_ext.md",
+      "last_metrics": {
+        "ic_mean": 0.029808782357369147,
+        "ic_std": 0.07210929656925703,
+        "ic_ir": 0.4133833468856466,
+        "mono_mean": 0.11785216178521617,
+        "turnover_mean": 0.012715920869113261
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02908779850303717,
+          "ic_ir": 0.4156239993846507
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02908779850303717,
+          "ic_ir": 0.4156239993846507
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02908779850303717,
+          "ic_ir": 0.4156239993846507
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.030073375955814538,
+          "ic_ir": 0.42248758358306204
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.029856466387081837,
+          "ic_ir": 0.41852554367889294
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.029856466387081837,
+          "ic_ir": 0.41852554367889294
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.029808782357369147,
+          "ic_ir": 0.4133833468856466
+        }
+      ]
+    },
+    {
+      "name": "db_csk_up_120",
+      "version": "1.0",
+      "desc": "东北：120日上行协偏度",
+      "formula": "CSK_XYY|y>ey",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20240311-东北证券-股票收益的协偏度因子.pdf",
+      "hypothesis": "上行极端敏感度与未来收益正相关",
+      "windows": {
+        "window": 120
+      },
+      "checklist_score": 8,
+      "impl": "db_csk_up_120",
+      "card_path": "factors/research_cards/daily_batch10_csk_gk.md",
+      "last_metrics": {
+        "ic_mean": 0.01217678054186885,
+        "ic_std": 0.05503250227114296,
+        "ic_ir": 0.22126525306580344,
+        "mono_mean": -0.00844062947067239,
+        "turnover_mean": 0.014116583908516712
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.012223962241938731,
+          "ic_ir": 0.2235911922028348
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.012223962241938731,
+          "ic_ir": 0.2235911922028348
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.012288958402476527,
+          "ic_ir": 0.22399798008725602
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.012435120757223118,
+          "ic_ir": 0.22637314894554061
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.012435120757223118,
+          "ic_ir": 0.22637314894554061
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.01217678054186885,
+          "ic_ir": 0.22126525306580344
+        }
+      ]
+    },
+    {
+      "name": "db_csk_xyy_120",
+      "version": "1.0",
+      "desc": "东北：120日协偏度CSK_XYY取负",
+      "formula": "neg(E[(x-ex)(y-ey)^2]/(sx*sy^2))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20240311-东北证券-股票收益的协偏度因子.pdf",
+      "hypothesis": "高协偏度股票已定价偏贵，后续收益偏低",
+      "windows": {
+        "window": 120
+      },
+      "checklist_score": 8,
+      "impl": "db_csk_xyy_120",
+      "card_path": "factors/research_cards/daily_batch9_coskew_ext.md",
+      "last_metrics": {
+        "ic_mean": 0.026564745446989238,
+        "ic_std": 0.07478470152611072,
+        "ic_ir": 0.35521630634193657,
+        "mono_mean": 0.13033472803347282,
+        "turnover_mean": 0.012232674865743308
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.025810596662331688,
+          "ic_ir": 0.3516571787750601
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.025810596662331688,
+          "ic_ir": 0.3516571787750601
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.025810596662331688,
+          "ic_ir": 0.3516571787750601
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.026640444590068646,
+          "ic_ir": 0.35795784022017163
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.02665336423742974,
+          "ic_ir": 0.3581619509298999
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.02665336423742974,
+          "ic_ir": 0.3581619509298999
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.026564745446989238,
+          "ic_ir": 0.35521630634193657
+        }
+      ]
+    },
+    {
+      "name": "df_ext_rev_20",
+      "version": "1.0",
+      "desc": "东方：日频MAD极端收益20日和取负",
+      "formula": "neg(sum(ret|extreme_MAD,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20190701-东方证券-温和收益动量与极端收益反转.pdf",
+      "hypothesis": "极端收益段呈反转",
+      "windows": {
+        "mad": 60,
+        "sum": 20,
+        "k": 1.96
+      },
+      "checklist_score": 8,
+      "impl": "df_ext_rev_20",
+      "card_path": "factors/research_cards/daily_batch9_coskew_ext.md",
+      "last_metrics": {
+        "ic_mean": 0.03335212565193707,
+        "ic_std": 0.0823024958316095,
+        "ic_ir": 0.4052383261884956,
+        "mono_mean": 0.049860529986053004,
+        "turnover_mean": 0.05829503372513538
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.034063829169144744,
+          "ic_ir": 0.413953478522616
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.034063829169144744,
+          "ic_ir": 0.413953478522616
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.034063829169144744,
+          "ic_ir": 0.413953478522616
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.033713347337030034,
+          "ic_ir": 0.41053788643953254
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03384382308442545,
+          "ic_ir": 0.4124975035142482
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03384382308442545,
+          "ic_ir": 0.4124975035142482
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.03335212565193707,
+          "ic_ir": 0.4052383261884956
+        }
+      ]
+    },
+    {
+      "name": "df_maxret_20",
+      "version": "1.0",
+      "desc": "东方相关：20日最大日收益取负（MAX彩票）",
+      "formula": "neg(max(ret,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "东方证券-波动率因子的逻辑与非对称使用（MAXRet解释）",
+      "hypothesis": "高MAX彩票偏好导致后续收益偏低",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "df_maxret_20",
+      "card_path": "factors/research_cards/daily_batch6_max_idio.md",
+      "last_metrics": {
+        "ic_mean": 0.04718037599772978,
+        "ic_std": 0.12556416604020812,
+        "ic_ir": 0.3757471377830972,
+        "mono_mean": 0.021269177126917716,
+        "turnover_mean": 0.03503180941145592
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04942460361730547,
+          "ic_ir": 0.3961537869077432
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04942460361730547,
+          "ic_ir": 0.3961537869077432
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04942460361730547,
+          "ic_ir": 0.3961537869077432
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04942460361730547,
+          "ic_ir": 0.3961537869077432
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04942460361730547,
+          "ic_ir": 0.3961537869077432
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04942460361730547,
+          "ic_ir": 0.3961537869077432
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.04823861760020331,
+          "ic_ir": 0.38552254830142463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04855127273003773,
+          "ic_ir": 0.38887534984595346
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04855127273003773,
+          "ic_ir": 0.38887534984595346
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.04718037599772978,
+          "ic_ir": 0.3757471377830972
+        }
+      ]
+    },
+    {
+      "name": "df_mild_mom_20",
+      "version": "1.0",
+      "desc": "温和日收益20日和",
+      "formula": "sum(ret|not_extreme_MAD,20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20190701-东方温和/极端收益",
+      "hypothesis": "温和收益呈动量",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "df_mild_mom_20",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": -0.005483026050382687,
+        "ic_std": 0.06717737422648323,
+        "ic_ir": -0.0816201304906187,
+        "mono_mean": -0.028469241773962806,
+        "turnover_mean": 0.048054774598792156
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.005593529220060982,
+          "ic_ir": -0.08437439294386725
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.005657578447523191,
+          "ic_ir": -0.08484969954485172
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.005576793251102161,
+          "ic_ir": -0.08347594344572923
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.005576793251102161,
+          "ic_ir": -0.08347594344572923
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.005483026050382687,
+          "ic_ir": -0.0816201304906187
+        }
+      ]
+    },
+    {
+      "name": "dfzq_quantaalpha",
+      "version": "1.0",
+      "desc": "东方：QuantaAlpha 大模型挖因子参考",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260407-东方证券-量化研究参考系列之一：QuantaAlpha",
+      "hypothesis": "非本仓库日频选股可落地，仅作研报扫描记录",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/dfzq_quantaalpha.md"
+    },
+    {
+      "name": "dw_pct_turn_20",
+      "version": "1.0",
+      "desc": "东吴：换手变化率取负",
+      "formula": "neg(mean(turn/MA40_lag-1,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20210515-东吴证券-量稳换手率.pdf",
+      "hypothesis": "换手相对加速反映过热",
+      "windows": {
+        "avg": 20,
+        "base": 40
+      },
+      "checklist_score": 8,
+      "impl": "dw_pct_turn_20",
+      "card_path": "factors/research_cards/daily_batch4_bias_amp.md",
+      "last_metrics": {
+        "ic_mean": 0.03280474637385839,
+        "ic_std": 0.0663331245056616,
+        "ic_ir": 0.4945454720900185,
+        "mono_mean": 0.06854951185495119,
+        "turnover_mean": 0.0092191589647885
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.031650245141270766,
+          "ic_ir": 0.4826488765093827
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.032564448752132547,
+          "ic_ir": 0.49301057496845424
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.0325697339118335,
+          "ic_ir": 0.4931330669757025
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.0325697339118335,
+          "ic_ir": 0.4931330669757025
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.03280474637385839,
+          "ic_ir": 0.4945454720900185
+        }
+      ]
+    },
+    {
+      "name": "fz_bias_60",
+      "version": "1.0",
+      "desc": "方正：60日乖离率取负",
+      "formula": "neg(close/MA60-1)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20180806-方正证券-乖离率选股因子.pdf",
+      "hypothesis": "相对均线偏离过大后均值回复",
+      "windows": {
+        "window": 60
+      },
+      "checklist_score": 8,
+      "impl": "fz_bias_60",
+      "card_path": "factors/research_cards/daily_batch4_bias_amp.md",
+      "last_metrics": {
+        "ic_mean": 0.04141159001927647,
+        "ic_std": 0.11821106071023393,
+        "ic_ir": 0.3503190798768573,
+        "mono_mean": 0.03549511854951186,
+        "turnover_mean": 0.031213418726026107
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.040421301778333536,
+          "ic_ir": 0.34676302230156075
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.04140415670984762,
+          "ic_ir": 0.3518249859485547
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.041544725541836386,
+          "ic_ir": 0.3533778800714743
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.041544725541836386,
+          "ic_ir": 0.3533778800714743
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.04141159001927647,
+          "ic_ir": 0.3503190798768573
+        }
+      ]
+    },
+    {
+      "name": "fz_jump_10",
+      "version": "1.0",
+      "desc": "方正：10日隔夜跳空幅度取负",
+      "formula": "neg(mean(abs(open/close_lag1-1),10))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20180724-方正证券-A股跳一跳隔夜跳空选股因子.pdf",
+      "hypothesis": "跳空缺口越大短期交易越热后续收益越弱",
+      "windows": {
+        "window": 10
+      },
+      "checklist_score": 8,
+      "impl": "fz_jump_10",
+      "card_path": "factors/research_cards/overnight_gap_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.03650427828543431,
+        "ic_std": 0.138116106642905,
+        "ic_ir": 0.2643013850644879,
+        "mono_mean": 0.022315202231520226,
+        "turnover_mean": 0.041385449600744646
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04020337208695947,
+          "ic_ir": 0.29341454957989654
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.037969389834280325,
+          "ic_ir": 0.27542672319797207
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.038403887701220045,
+          "ic_ir": 0.27924781044516267
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.038403887701220045,
+          "ic_ir": 0.27924781044516267
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.03650427828543431,
+          "ic_ir": 0.2643013850644879
+        }
+      ]
+    },
+    {
+      "name": "fz_lt_mom_60",
+      "version": "1.0",
+      "desc": "低换手时60日动量",
+      "formula": "mom60|turn20<cs_median",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20190313-方正低换手下动量",
+      "hypothesis": "低换手环境下动量更有效",
+      "windows": {
+        "mom": 60,
+        "turn": 20
+      },
+      "checklist_score": 8,
+      "impl": "fz_lt_mom_60",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": -0.012023588499610868,
+        "ic_std": 0.08223666369799221,
+        "ic_ir": -0.1462071533418059,
+        "mono_mean": 0.01573676680972818,
+        "turnover_mean": 0.052514854135010246
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.01192040041448041,
+          "ic_ir": -0.14618180449489313
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.011909140541868868,
+          "ic_ir": -0.1457207752285812
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.011659662991672435,
+          "ic_ir": -0.1425236534422408
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.011659662991672435,
+          "ic_ir": -0.1425236534422408
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.012023588499610868,
+          "ic_ir": -0.1462071533418059
+        }
+      ]
+    },
+    {
+      "name": "fz_panic_ret_20",
+      "version": "1.0",
+      "desc": "方正：惊恐度加权收益20日和取负",
+      "formula": "neg(sum(saliency*ret,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20221213-方正证券-草木皆兵因子.pdf",
+      "hypothesis": "相对市场极端偏离扭曲决策权重，高惊恐后续偏弱",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "fz_panic_ret_20",
+      "card_path": "factors/research_cards/daily_batch8_longmom_panic.md",
+      "last_metrics": {
+        "ic_mean": 0.038854391550743925,
+        "ic_std": 0.08726901286959138,
+        "ic_ir": 0.44522551903738355,
+        "mono_mean": 0.05132496513249652,
+        "turnover_mean": 0.06504560557848098
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03912869190815269,
+          "ic_ir": 0.44945903225546
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03912869190815269,
+          "ic_ir": 0.44945903225546
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03912869190815269,
+          "ic_ir": 0.44945903225546
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03912869190815269,
+          "ic_ir": 0.44945903225546
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.03915125273672701,
+          "ic_ir": 0.4497629047024486
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03918570015207282,
+          "ic_ir": 0.4502099963273566
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03918570015207282,
+          "ic_ir": 0.4502099963273566
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.038854391550743925,
+          "ic_ir": 0.44522551903738355
+        }
+      ]
+    },
+    {
+      "name": "fz_rev_turn_flip_20",
+      "version": "1.0",
+      "desc": "方正：日间反转换手翻转取负",
+      "formula": "neg(mean(turn_flip_ret,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20220611-方正证券-球队硬币因子.pdf",
+      "hypothesis": "换手下降更像硬币宜翻转反转",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "fz_rev_turn_flip_20",
+      "card_path": "factors/research_cards/daily_batch5_dirvol.md",
+      "last_metrics": {
+        "ic_mean": 0.04426496687056302,
+        "ic_std": 0.08478870681456356,
+        "ic_ir": 0.522062059129789,
+        "mono_mean": 0.051673640167364025,
+        "turnover_mean": 0.03652471337553322
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04605832060534228,
+          "ic_ir": 0.5488631521385949
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04605832060534228,
+          "ic_ir": 0.5488631521385949
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04605832060534228,
+          "ic_ir": 0.5488631521385949
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04605832060534228,
+          "ic_ir": 0.5488631521385949
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04605832060534228,
+          "ic_ir": 0.5488631521385949
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04605832060534228,
+          "ic_ir": 0.5488631521385949
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04605832060534228,
+          "ic_ir": 0.5488631521385949
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.045413010703742894,
+          "ic_ir": 0.5397745808901037
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04558138696332715,
+          "ic_ir": 0.5429889928759773
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04558138696332715,
+          "ic_ir": 0.5429889928759773
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.04426496687056302,
+          "ic_ir": 0.522062059129789
+        }
+      ]
+    },
+    {
+      "name": "fz_rev_vol_flip_20",
+      "version": "1.0",
+      "desc": "方正：日间反转波动翻转取负",
+      "formula": "neg(vol_flip(mean_ret20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20220611-方正证券-球队硬币因子.pdf",
+      "hypothesis": "低波更像硬币宜翻转反转方向",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "fz_rev_vol_flip_20",
+      "card_path": "factors/research_cards/daily_batch4_bias_amp.md",
+      "last_metrics": {
+        "ic_mean": 0.00917361240344747,
+        "ic_std": 0.07104748172372272,
+        "ic_ir": 0.12911945899954966,
+        "mono_mean": 0.018597997138769674,
+        "turnover_mean": 0.12560073623121246
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.009611387288250386,
+          "ic_ir": 0.13642563810748998
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.008993483392374015,
+          "ic_ir": 0.1275413842309476
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.009159166057023391,
+          "ic_ir": 0.1297012187770544
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.009159166057023391,
+          "ic_ir": 0.1297012187770544
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.00917361240344747,
+          "ic_ir": 0.12911945899954966
+        }
+      ]
+    },
+    {
+      "name": "gfn_logvol_var10",
+      "version": "1.0",
+      "desc": "国金GFlowNet图表18：gfn_logvol_var10",
+      "formula": "-ts_var(cs_demean(log(volume)),10)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260410-国金证券-Alpha掘金系列之二十二：基于GFlowNet的低相关性量价因子挖掘策略",
+      "hypothesis": "成交量对数截面去均值后的10日方差取负",
+      "windows": {
+        "lookback": 30
+      },
+      "checklist_score": 8,
+      "impl": "gfn_logvol_var10",
+      "card_path": "factors/research_cards/gfn_example_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.044812241389468106,
+        "ic_std": 0.05967881658262762,
+        "ic_ir": 0.750890248090356,
+        "mono_mean": 0.18403068340306836,
+        "turnover_mean": 0.08559795099285182
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.044674388528913166,
+          "ic_ir": 0.755636453763315
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.04493972849984066,
+          "ic_ir": 0.7580175709395669
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04514277975698704,
+          "ic_ir": 0.7624747617298596
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04514277975698704,
+          "ic_ir": 0.7624747617298596
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.044812241389468106,
+          "ic_ir": 0.750890248090356
+        }
+      ]
+    },
+    {
+      "name": "gfn_sqrt_open_low_vol",
+      "version": "1.0",
+      "desc": "国金GFlowNet图表18：gfn_sqrt_open_low_vol",
+      "formula": "cs_winsorize(sqrt(open)/(low*volume))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260410-国金证券-Alpha掘金系列之二十二：基于GFlowNet的低相关性量价因子挖掘策略",
+      "hypothesis": "开盘根号/(最低价*成交量)截面缩尾",
+      "windows": {
+        "lookback": 30
+      },
+      "checklist_score": 8,
+      "impl": "gfn_sqrt_open_low_vol",
+      "card_path": "factors/research_cards/gfn_example_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.051148861913529346,
+        "ic_std": 0.09883272003949263,
+        "ic_ir": 0.5175296388998577,
+        "mono_mean": 0.06039051603905161,
+        "turnover_mean": 0.10079335661284519
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.053913526673549594,
+          "ic_ir": 0.5494236831583161
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.052482627082806634,
+          "ic_ir": 0.5352485389831843
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05274172181417012,
+          "ic_ir": 0.5384654859856294
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05274172181417012,
+          "ic_ir": 0.5384654859856294
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.051148861913529346,
+          "ic_ir": 0.5175296388998577
+        }
+      ]
+    },
+    {
+      "name": "gfn_volpct_max20",
+      "version": "1.0",
+      "desc": "国金GFlowNet图表18：gfn_volpct_max20",
+      "formula": "-cs_zscore(ts_max(pct_change(volume,10),20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260410-国金证券-Alpha掘金系列之二十二：基于GFlowNet的低相关性量价因子挖掘策略",
+      "hypothesis": "成交量10日涨幅的20日最大值截面标准化取负",
+      "windows": {
+        "lookback": 30
+      },
+      "checklist_score": 8,
+      "impl": "gfn_volpct_max20",
+      "card_path": "factors/research_cards/gfn_example_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.040751007386417,
+        "ic_std": 0.058734775525369765,
+        "ic_ir": 0.6938139632255018,
+        "mono_mean": 0.11485355648535563,
+        "turnover_mean": 0.04609540282556196
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04021550153560402,
+          "ic_ir": 0.692573637010579
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.04070291420956609,
+          "ic_ir": 0.696210938517822
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04090146459960089,
+          "ic_ir": 0.7010709925650302
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04090146459960089,
+          "ic_ir": 0.7010709925650302
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.040751007386417,
+          "ic_ir": 0.6938139632255018
+        }
+      ]
+    },
+    {
+      "name": "gk_vol_20",
+      "version": "1.0",
+      "desc": "Garman-Klass极差波动20日均值取负",
+      "formula": "neg(mean(GK,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "经典Garman-Klass波动率",
+      "hypothesis": "高GK波动对应投机溢价、后续收益偏低",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "gk_vol_20",
+      "card_path": "factors/research_cards/daily_batch10_csk_gk.md",
+      "last_metrics": {
+        "ic_mean": 0.04734810373785968,
+        "ic_std": 0.16436511474197266,
+        "ic_ir": 0.2880666241871868,
+        "mono_mean": -0.01566523605150216,
+        "turnover_mean": 0.007150845206402354
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.04811486486153862,
+          "ic_ir": 0.29500477791935753
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.04811486486153862,
+          "ic_ir": 0.29500477791935753
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.0471359670984052,
+          "ic_ir": 0.2880188146853141
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.04792433160400639,
+          "ic_ir": 0.2930210394712336
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.04792433160400639,
+          "ic_ir": 0.2930210394712336
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.04734810373785968,
+          "ic_ir": 0.2880666241871868
+        }
+      ]
+    },
+    {
+      "name": "glms_short_rate_history",
+      "version": "1.0",
+      "desc": "国联民生短端行情专题（非选股）",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260410-国联民生证券-固收专题：历史上的短端行情如何收尾",
+      "hypothesis": "见研报卡",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/glms_short_rate_history.md"
+    },
+    {
+      "name": "gs_high_vol_evt_5",
+      "version": "1.0",
+      "desc": "国盛：近5日高位放量事件次数取负",
+      "formula": "-sum(close分位>=90%且vol>mean+1.5std, 5); 窗=120",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "国盛金工：高低位放量事件簇（十五）日频近似",
+      "hypothesis": "高位放量反映情绪过热，后续偏弱",
+      "windows": {
+        "lookback": 120,
+        "event_window": 5
+      },
+      "checklist_score": 8,
+      "impl": "gs_high_vol_evt_5",
+      "card_path": "factors/research_cards/gs_hl_vol_surge.md",
+      "last_metrics": {
+        "ic_mean": -0.007506865784125915,
+        "ic_std": 0.09224492889411008,
+        "ic_ir": -0.08137971240395454,
+        "mono_mean": -0.032911392405063286,
+        "turnover_mean": 0.08519525789519058
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.006759384689118091,
+          "ic_ir": -0.07340312139635886
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.006759384689118091,
+          "ic_ir": -0.07340312139635886
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.007506865784125915,
+          "ic_ir": -0.08137971240395454
+        }
+      ]
+    },
+    {
+      "name": "gs_high_vol_soft_120",
+      "version": "1.0",
+      "desc": "国盛：高位×放量连续软分取负",
+      "formula": "-max(vol_z,0)*max(pct-0.9,0); 窗=120",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "国盛金工：高低位放量事件簇（十五）日频软分",
+      "hypothesis": "高位放量强度越高，后续越弱",
+      "windows": {
+        "lookback": 120
+      },
+      "checklist_score": 8,
+      "impl": "gs_high_vol_soft_120",
+      "card_path": "factors/research_cards/gs_hl_vol_surge.md",
+      "last_metrics": {
+        "ic_mean": -0.008802838999825202,
+        "ic_std": 0.09618408277469928,
+        "ic_ir": -0.09152074590600288,
+        "mono_mean": -0.0793248945147679,
+        "turnover_mean": 0.21422196257541304
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.008052450142538723,
+          "ic_ir": -0.08382885102756488
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.008802838999825202,
+          "ic_ir": -0.09152074590600288
+        }
+      ]
+    },
+    {
+      "name": "gs_hl_vol_net_5",
+      "version": "1.0",
+      "desc": "国盛：近5日低位放量次数减高位放量次数",
+      "formula": "sum(低位,5)-sum(高位,5); 窗=120",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "国盛金工：高低位放量事件簇（十五）日频近似",
+      "hypothesis": "低位正向与高位负向有机结合",
+      "windows": {
+        "lookback": 120,
+        "event_window": 5
+      },
+      "checklist_score": 8,
+      "impl": "gs_hl_vol_net_5",
+      "card_path": "factors/research_cards/gs_hl_vol_surge.md",
+      "last_metrics": {
+        "ic_mean": -0.008328833809551255,
+        "ic_std": 0.08905538456022379,
+        "ic_ir": -0.0935242023902426,
+        "mono_mean": -0.045218002812939515,
+        "turnover_mean": 0.09268937798592208
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.007680235745681756,
+          "ic_ir": -0.08635605638076696
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.007680235745681756,
+          "ic_ir": -0.08635605638076696
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.008328833809551255,
+          "ic_ir": -0.0935242023902426
+        }
+      ]
+    },
+    {
+      "name": "gs_hl_vol_soft_120",
+      "version": "1.0",
+      "desc": "国盛：高低位放量软分净敞口",
+      "formula": "low_soft + high_soft(已取负); 窗=120",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "国盛金工：高低位放量事件簇（十五）日频软分",
+      "hypothesis": "低位正向与高位负向连续强度结合",
+      "windows": {
+        "lookback": 120
+      },
+      "checklist_score": 8,
+      "impl": "gs_hl_vol_soft_120",
+      "card_path": "factors/research_cards/gs_hl_vol_surge.md",
+      "last_metrics": {
+        "ic_mean": -0.00768471044453764,
+        "ic_std": 0.0883212702137466,
+        "ic_ir": -0.08700860422342033,
+        "mono_mean": -0.07165963431786217,
+        "turnover_mean": 0.2613512032524935
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.006951869990855101,
+          "ic_ir": -0.07877598311228151
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.00768471044453764,
+          "ic_ir": -0.08700860422342033
+        }
+      ]
+    },
+    {
+      "name": "gs_low_vol_evt_5",
+      "version": "1.0",
+      "desc": "国盛：近5日低位放量事件次数",
+      "formula": "sum(close分位<=10%且vol>mean+1.5std, 5); 窗=120",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "国盛金工：高低位放量事件簇（十五）日频近似",
+      "hypothesis": "低位放量反映资金关注提升，后续偏反弹",
+      "windows": {
+        "lookback": 120,
+        "event_window": 5
+      },
+      "checklist_score": 8,
+      "impl": "gs_low_vol_evt_5",
+      "card_path": "factors/research_cards/gs_hl_vol_surge.md",
+      "last_metrics": {
+        "ic_mean": -0.00181923317999807,
+        "ic_std": 0.10894649114419158,
+        "ic_ir": -0.016698410025801563,
+        "mono_mean": 0.049437412095639954,
+        "turnover_mean": 0.1374553456699917
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.002087913896249655,
+          "ic_ir": -0.01916792388066903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.002087913896249655,
+          "ic_ir": -0.01916792388066903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.00181923317999807,
+          "ic_ir": -0.016698410025801563
+        }
+      ]
+    },
+    {
+      "name": "gs_low_vol_soft_120",
+      "version": "1.0",
+      "desc": "国盛：低位×放量连续软分",
+      "formula": "max(vol_z,0)*max(0.1-pct,0); 窗=120",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "国盛金工：高低位放量事件簇（十五）日频软分",
+      "hypothesis": "低位放量强度越高，反弹概率越大",
+      "windows": {
+        "lookback": 120
+      },
+      "checklist_score": 8,
+      "impl": "gs_low_vol_soft_120",
+      "card_path": "factors/research_cards/gs_hl_vol_surge.md",
+      "last_metrics": {
+        "ic_mean": 0.0016506219706939871,
+        "ic_std": 0.10532339413214355,
+        "ic_ir": 0.015671940543646373,
+        "mono_mean": 0.06969057665260196,
+        "turnover_mean": 0.38011627243811436
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.0012111546741601974,
+          "ic_ir": 0.01147976310661531
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.0016506219706939871,
+          "ic_ir": 0.015671940543646373
+        }
+      ]
+    },
+    {
+      "name": "gs_ovn_turn_corr_20",
+      "version": "1.0",
+      "desc": "国盛：隔夜绝对涨跌与昨换手相关取负",
+      "formula": "neg(corr(abs(overnight),turn_lag1,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20220426-国盛证券-量价淘金之一隔夜涨跌选股因子.pdf",
+      "hypothesis": "知情交易优势对应隔夜跳空与昨换手同步升高",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "gs_ovn_turn_corr_20",
+      "card_path": "factors/research_cards/overnight_gap_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.016969079508855282,
+        "ic_std": 0.035042589709804985,
+        "ic_ir": 0.48424159428226565,
+        "mono_mean": 0.13583690987124464,
+        "turnover_mean": 0.07800325357994667
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017144475997210366,
+          "ic_ir": 0.4935841407796497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.016930066103726937,
+          "ic_ir": 0.4860130809661058
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.017016918458775093,
+          "ic_ir": 0.48783264264775444
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.017016918458775093,
+          "ic_ir": 0.48783264264775444
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.016969079508855282,
+          "ic_ir": 0.48424159428226565
+        }
+      ]
+    },
+    {
+      "name": "gtht_csi500_multistrategy",
+      "version": "1.0",
+      "desc": "国泰海通500增强多策略框架（缺L2/财务）",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260411-国泰海通证券-量化选股系列（三）",
+      "hypothesis": "见研报卡",
+      "windows": null,
+      "checklist_score": 6,
+      "impl": null,
+      "card_path": "factors/research_cards/gtht_csi500_multistrategy.md"
+    },
+    {
+      "name": "ha_volup_turn_acc_20",
+      "version": "1.0",
+      "desc": "华安：放量上涨日加速换手取负",
+      "formula": "neg(sum(dturn|volup_up,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20240316-华安证券-加速换手因子适逢其时.pdf",
+      "hypothesis": "放量上涨时换手加速反映分歧后续偏弱",
+      "windows": {
+        "signal": 3,
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "ha_volup_turn_acc_20",
+      "card_path": "factors/research_cards/ha_turn_acc_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.05678307583701751,
+        "ic_std": 0.09692240934606959,
+        "ic_ir": 0.5858611668873065,
+        "mono_mean": 0.08312412831241281,
+        "turnover_mean": 0.03555881833477348
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05809988006768847,
+          "ic_ir": 0.6014119234058903
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.05730475780194366,
+          "ic_ir": 0.5930578418576059
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05784870267401422,
+          "ic_ir": 0.6014052755371289
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05784870267401422,
+          "ic_ir": 0.6014052755371289
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.05678307583701751,
+          "ic_ir": 0.5858611668873065
+        }
+      ]
+    },
+    {
+      "name": "hcc_colleague_ai",
+      "version": "1.0",
+      "desc": "华创：AI同事能力点评",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260408-华创证券-量化看市场系列之十三",
+      "hypothesis": "非本仓库日频选股可落地，仅作研报扫描记录",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/hcc_colleague_ai.md"
+    },
+    {
+      "name": "hcc_hermes_agent",
+      "version": "1.0",
+      "desc": "华创：Hermes Agent 点评",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260410-华创证券-量化看市场系列之十四：一文了解Hermes Agent",
+      "hypothesis": "非本仓库日频选股可落地，仅作研报扫描记录",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/hcc_hermes_agent.md"
+    },
+    {
+      "name": "htsc_credit_ultralong",
+      "version": "1.0",
+      "desc": "华泰信用超长债专题（非选股）",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260411-华泰证券-信用策略系列报告之三",
+      "hypothesis": "见研报卡",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/htsc_credit_ultralong.md"
+    },
+    {
+      "name": "htsc_gold_outlook",
+      "version": "1.0",
+      "desc": "华泰黄金专题（非选股）",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260410-华泰证券-固收专题研究：黄金短期失意与长期趋势",
+      "hypothesis": "见研报卡",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/htsc_gold_outlook.md"
+    },
+    {
+      "name": "idt_rev_20",
+      "version": "1.0",
+      "desc": "日内收益均值取负",
+      "formula": "neg(mean(close/open-1,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "日内收益反转",
+      "hypothesis": "日内过度反应后修复",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "idt_rev_20",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": 0.044170297289163454,
+        "ic_std": 0.105361660292507,
+        "ic_ir": 0.41922552441312194,
+        "mono_mean": 0.08528591352859136,
+        "turnover_mean": 0.060145478996721194
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04382626637486896,
+          "ic_ir": 0.4181990257037873
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.0441638635513597,
+          "ic_ir": 0.42013283570943805
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.044277203954354485,
+          "ic_ir": 0.4212598802023575
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.044277203954354485,
+          "ic_ir": 0.4212598802023575
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.044170297289163454,
+          "ic_ir": 0.41922552441312194
+        }
+      ]
+    },
+    {
+      "name": "ky_ideal_amp_20",
+      "version": "1.0",
+      "desc": "开源：理想振幅取负",
+      "formula": "neg(V_high25-V_low25)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20200516-开源证券-振幅因子隐藏结构.pdf",
+      "hypothesis": "高价态振幅相对低价态过大不利",
+      "windows": {
+        "window": 20,
+        "lam": 0.25
+      },
+      "checklist_score": 8,
+      "impl": "ky_ideal_amp_20",
+      "card_path": "factors/research_cards/daily_batch4_bias_amp.md",
+      "last_metrics": {
+        "ic_mean": 0.033516072288049016,
+        "ic_std": 0.07387956514386232,
+        "ic_ir": 0.45365822366150493,
+        "mono_mean": 0.054811715481171544,
+        "turnover_mean": 0.07096783389074296
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.03477732200135909,
+          "ic_ir": 0.4764692824540933
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.03426508039204877,
+          "ic_ir": 0.46820312456131624
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03454644807560772,
+          "ic_ir": 0.47335115968247754
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03454644807560772,
+          "ic_ir": 0.47335115968247754
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.033516072288049016,
+          "ic_ir": 0.45365822366150493
+        }
+      ]
+    },
+    {
+      "name": "ky_long_mom2_160",
+      "version": "1.0",
+      "desc": "开源：低振幅超额收益并对20日涨跌截面中性",
+      "formula": "resid(sum(excess|low_amp),rev20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20221126-开源证券-长端动量2.0.pdf",
+      "hypothesis": "超额+反转中性后长端动量更纯",
+      "windows": {
+        "window": 160,
+        "keep_q": 0.7
+      },
+      "checklist_score": 8,
+      "impl": "ky_long_mom2_160",
+      "card_path": "factors/research_cards/daily_batch8_longmom_panic.md",
+      "last_metrics": {
+        "ic_mean": 0.022416274832972153,
+        "ic_std": 0.06823480675919738,
+        "ic_ir": 0.3285167189244023,
+        "mono_mean": 0.022454672245467232,
+        "turnover_mean": 0.007751683744907158
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.022568707887055704,
+          "ic_ir": 0.3337316883767243
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.022568707887055704,
+          "ic_ir": 0.3337316883767243
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.022568707887055704,
+          "ic_ir": 0.3337316883767243
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.022568707887055704,
+          "ic_ir": 0.3337316883767243
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.02288242185458337,
+          "ic_ir": 0.33736497952880373
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.023110103775494557,
+          "ic_ir": 0.34119696311398323
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.023110103775494557,
+          "ic_ir": 0.34119696311398323
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.022416274832972153,
+          "ic_ir": 0.3285167189244023
+        }
+      ]
+    },
+    {
+      "name": "ky_long_mom_160",
+      "version": "1.0",
+      "desc": "开源：160日低振幅70%日收益之和",
+      "formula": "sum(ret|amp_in_bottom70%,160)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20221126-开源证券-长端动量2.0.pdf",
+      "hypothesis": "高振幅日过度反应掩盖动量，剔后保留真实动量",
+      "windows": {
+        "window": 160,
+        "keep_q": 0.7
+      },
+      "checklist_score": 8,
+      "impl": "ky_long_mom_160",
+      "card_path": "factors/research_cards/daily_batch8_longmom_panic.md",
+      "last_metrics": {
+        "ic_mean": 0.018377530885208163,
+        "ic_std": 0.06789322413835408,
+        "ic_ir": 0.2706828423372278,
+        "mono_mean": 0.017668097281831174,
+        "turnover_mean": 0.007741775177354017
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01790291277949933,
+          "ic_ir": 0.2665461572573413
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01790291277949933,
+          "ic_ir": 0.2665461572573413
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01790291277949933,
+          "ic_ir": 0.2665461572573413
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01790291277949933,
+          "ic_ir": 0.2665461572573413
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.01814622812876993,
+          "ic_ir": 0.26869879434607896
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.01835764401082664,
+          "ic_ir": 0.27156946239911683
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.01835764401082664,
+          "ic_ir": 0.27156946239911683
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.018377530885208163,
+          "ic_ir": 0.2706828423372278
+        }
+      ]
+    },
+    {
+      "name": "m6_bp_mrq",
+      "version": "1.0",
+      "desc": "模块6：账面市值比1/PB",
+      "formula": "1/pb_mrq (pb>0)",
+      "data_deps": [
+        "data_valuation",
+        "data_fundamental"
+      ],
+      "status": "active",
+      "source": "课件模块6样例（估值/质量/成长/PEG）",
+      "hypothesis": "高BP代表相对便宜",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "m6_bp_mrq",
+      "card_path": "factors/research_cards/module6_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.02632771956049432,
+        "ic_std": 0.11452965262339747,
+        "ic_ir": 0.22987688303802453,
+        "mono_mean": 0.03176229508196722,
+        "turnover_mean": 0.0018589062167525179
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.02632771956049432,
+          "ic_ir": 0.22987688303802453
+        }
+      ]
+    },
+    {
+      "name": "m6_dy",
+      "version": "1.0",
+      "desc": "模块6：股息率(近一年现金分红/收盘价)",
+      "formula": "sum(cash_ps in 1y PIT) / close",
+      "data_deps": [
+        "data_daily",
+        "_cache/dividend"
+      ],
+      "status": "inactive",
+      "source": "课件模块6样例（股息率&PEG）",
+      "hypothesis": "高股息预期收益更高",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "m6_dy",
+      "card_path": "factors/research_cards/module6_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.00837601810285342,
+        "ic_std": 0.044096041735122264,
+        "ic_ir": 0.1899494324947984,
+        "mono_mean": 0.024051490514905148,
+        "turnover_mean": 0.0037143131818503086
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.00837601810285342,
+          "ic_ir": 0.1899494324947984
+        }
+      ]
+    },
+    {
+      "name": "m6_ep_ttm",
+      "version": "1.0",
+      "desc": "模块6：盈利收益率1/PE",
+      "formula": "1/pe_ttm (pe>0)",
+      "data_deps": [
+        "data_valuation",
+        "data_fundamental"
+      ],
+      "status": "inactive",
+      "source": "课件模块6样例（估值/质量/成长/PEG）",
+      "hypothesis": "低估值（高EP）预期收益更高",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "m6_ep_ttm",
+      "card_path": "factors/research_cards/module6_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.01849833656652425,
+        "ic_std": 0.09337139629254361,
+        "ic_ir": 0.19811566819207432,
+        "mono_mean": 0.02923497267759563,
+        "turnover_mean": 0.003065938632581615
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.01849833656652425,
+          "ic_ir": 0.19811566819207432
+        }
+      ]
+    },
+    {
+      "name": "m6_peg_inv",
+      "version": "1.0",
+      "desc": "模块6：PEG取负",
+      "formula": "-pe/max(yoy_eps,yoy_ni) (增速>5%)",
+      "data_deps": [
+        "data_valuation",
+        "data_fundamental"
+      ],
+      "status": "inactive",
+      "source": "课件模块6样例（估值/质量/成长/PEG）",
+      "hypothesis": "偏低PEG更优",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "m6_peg_inv",
+      "card_path": "factors/research_cards/module6_factors.md",
+      "last_metrics": {
+        "ic_mean": -0.009182517332022999,
+        "ic_std": 0.09201360224930974,
+        "ic_ir": -0.09979521622404348,
+        "mono_mean": -0.00737704918032787,
+        "turnover_mean": 0.024121512131664267
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.009182517332022999,
+          "ic_ir": -0.09979521622404348
+        }
+      ]
+    },
+    {
+      "name": "m6_roe",
+      "version": "1.0",
+      "desc": "模块6：ROE质量",
+      "formula": "roe",
+      "data_deps": [
+        "data_valuation",
+        "data_fundamental"
+      ],
+      "status": "inactive",
+      "source": "课件模块6样例（估值/质量/成长/PEG）",
+      "hypothesis": "高ROE反映盈利质量",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "m6_roe",
+      "card_path": "factors/research_cards/module6_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.007928733102164973,
+        "ic_std": 0.047712414859429564,
+        "ic_ir": 0.16617756878423837,
+        "mono_mean": 0.035109289617486335,
+        "turnover_mean": 0.007704515309268776
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.007928733102164973,
+          "ic_ir": 0.16617756878423837
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.007928733102164973,
+          "ic_ir": 0.16617756878423837
+        }
+      ]
+    },
+    {
+      "name": "m6_yoy_ni",
+      "version": "1.0",
+      "desc": "模块6：净利润同比成长",
+      "formula": "clip(yoy_ni,-2,5)",
+      "data_deps": [
+        "data_valuation",
+        "data_fundamental"
+      ],
+      "status": "inactive",
+      "source": "课件模块6样例（估值/质量/成长/PEG）",
+      "hypothesis": "高成长预期收益更高",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "m6_yoy_ni",
+      "card_path": "factors/research_cards/module6_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.004304887629776644,
+        "ic_std": 0.05672781914817946,
+        "ic_ir": 0.07588671121891347,
+        "mono_mean": -0.014480874316939885,
+        "turnover_mean": 0.011340260206443053
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.004304887629776644,
+          "ic_ir": 0.07588671121891347
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.004304887629776644,
+          "ic_ir": 0.07588671121891347
+        }
+      ]
+    },
+    {
+      "name": "momentum_20",
+      "version": "1.0",
+      "desc": "20 日动量：收盘价相对 20 个交易日前涨幅",
+      "formula": "close_t / close_{t-20} - 1",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "课程默认价量因子",
+      "hypothesis": "中期价格动量在截面上具有持续性",
+      "windows": {
+        "lookback": 20
+      },
+      "checklist_score": null,
+      "impl": "momentum",
+      "card_path": null,
+      "last_metrics": {
+        "ic_mean": -0.037140132955184826,
+        "ic_std": 0.11774292021680345,
+        "ic_ir": -0.31543410751829176,
+        "mono_mean": -0.027355836849507747,
+        "turnover_mean": 0.06886715214029643
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-14",
+          "status": "active",
+          "ic_mean": -0.06691871975893401,
+          "ic_ir": -0.25558553344487545
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-14",
+          "status": "inactive",
+          "ic_mean": -0.06691871975893401,
+          "ic_ir": -0.25558553344487545
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "inactive",
+          "ic_mean": -0.036151195011503906,
+          "ic_ir": -0.3099321559551867
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.036174234151028134,
+          "ic_ir": -0.31011916776077497
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.035596025148892436,
+          "ic_ir": -0.30438170909675716
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.037140132955184826,
+          "ic_ir": -0.31543410751829176
+        }
+      ]
+    },
+    {
+      "name": "ms_dastd_60",
+      "version": "1.0",
+      "desc": "民生：60日收益波动取负（低波）",
+      "formula": "neg(std(ret,60))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20190520-民生证券-因子研究专题四：低波动异象.pdf",
+      "hypothesis": "低波动异象：高波投机溢价导致后续收益偏低",
+      "windows": {
+        "window": 60
+      },
+      "checklist_score": 8,
+      "impl": "ms_dastd_60",
+      "card_path": "factors/research_cards/daily_batch7_lowvol_wdmom.md",
+      "last_metrics": {
+        "ic_mean": 0.03774913846210162,
+        "ic_std": 0.1843443355349977,
+        "ic_ir": 0.20477514729458535,
+        "mono_mean": -0.0014644351464435132,
+        "turnover_mean": 0.002916646605606434
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04235029261546134,
+          "ic_ir": 0.23282459957156404
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04235029261546134,
+          "ic_ir": 0.23282459957156404
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04235029261546134,
+          "ic_ir": 0.23282459957156404
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04235029261546134,
+          "ic_ir": 0.23282459957156404
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.04235029261546134,
+          "ic_ir": 0.23282459957156404
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.03945693976015767,
+          "ic_ir": 0.2149825756570803
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04004640502354691,
+          "ic_ir": 0.21856827996077996
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04004640502354691,
+          "ic_ir": 0.21856827996077996
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.03774913846210162,
+          "ic_ir": 0.20477514729458535
+        }
+      ]
+    },
+    {
+      "name": "ms_rank_vol_60",
+      "version": "1.0",
+      "desc": "民生：截面收益分位波动取负",
+      "formula": "neg(std(cs_rank(ret),60))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20190520-民生证券-因子研究专题四：低波动异象.pdf",
+      "hypothesis": "分位波动降低极端日收益对低波度量的干扰",
+      "windows": {
+        "window": 60
+      },
+      "checklist_score": 8,
+      "impl": "ms_rank_vol_60",
+      "card_path": "factors/research_cards/daily_batch7_lowvol_wdmom.md",
+      "last_metrics": {
+        "ic_mean": 0.040273352660734764,
+        "ic_std": 0.17337378368352113,
+        "ic_ir": 0.23229205595610863,
+        "mono_mean": -0.0030758226037196036,
+        "turnover_mean": 0.0024771001919262196
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.04087969118543928,
+          "ic_ir": 0.23814157433363567
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.04087969118543928,
+          "ic_ir": 0.23814157433363567
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.04087969118543928,
+          "ic_ir": 0.23814157433363567
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.04087969118543928,
+          "ic_ir": 0.23814157433363567
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.04087969118543928,
+          "ic_ir": 0.23814157433363567
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.04004310540612397,
+          "ic_ir": 0.23220086177332447
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.04074292218608136,
+          "ic_ir": 0.23621945082841433
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.04074292218608136,
+          "ic_ir": 0.23621945082841433
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.040273352660734764,
+          "ic_ir": 0.23229205595610863
+        }
+      ]
+    },
+    {
+      "name": "ovn_rev_20",
+      "version": "1.0",
+      "desc": "隔夜收益均值取负",
+      "formula": "neg(mean(open/close_lag-1,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "隔夜收益反转",
+      "hypothesis": "隔夜过度反应后修复",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "ovn_rev_20",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": -0.015614301490488947,
+        "ic_std": 0.053943257333509353,
+        "ic_ir": -0.2894578907972137,
+        "mono_mean": -0.06051502145922747,
+        "turnover_mean": 0.04740092506470654
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.015920082277781942,
+          "ic_ir": -0.2982007643693749
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.015928976200543985,
+          "ic_ir": -0.29711049037560294
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.015857067281113548,
+          "ic_ir": -0.295207258383996
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.015857067281113548,
+          "ic_ir": -0.295207258383996
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.015614301490488947,
+          "ic_ir": -0.2894578907972137
+        }
+      ]
+    },
+    {
+      "name": "pk_range_vol_20",
+      "version": "1.0",
+      "desc": "Parkinson极差波动率取负",
+      "formula": "neg(sqrt(sum(ln(H/L)^2)/(4Nln2)))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "经典Parkinson极差波动（日频OHLC）",
+      "hypothesis": "高极差波动对应投机溢价、后续收益偏低",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "pk_range_vol_20",
+      "card_path": "factors/research_cards/daily_batch6_max_idio.md",
+      "last_metrics": {
+        "ic_mean": 0.047741085135962875,
+        "ic_std": 0.1799513947803208,
+        "ic_ir": 0.26529988941871635,
+        "mono_mean": -0.004114365411436552,
+        "turnover_mean": 0.006731083178327401
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05161500274305599,
+          "ic_ir": 0.28887759519453693
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05161500274305599,
+          "ic_ir": 0.28887759519453693
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05161500274305599,
+          "ic_ir": 0.28887759519453693
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05161500274305599,
+          "ic_ir": 0.28887759519453693
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05161500274305599,
+          "ic_ir": 0.28887759519453693
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05161500274305599,
+          "ic_ir": 0.28887759519453693
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.04925430648110371,
+          "ic_ir": 0.27414823357349477
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04975612114136816,
+          "ic_ir": 0.27757328019957755
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04975612114136816,
+          "ic_ir": 0.27757328019957755
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.047741085135962875,
+          "ic_ir": 0.26529988941871635
+        }
+      ]
+    },
+    {
+      "name": "pv_corr_vol_20",
+      "version": "1.0",
+      "desc": "收益与成交量相关取负",
+      "formula": "neg(corr(ret,volume,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "量价齐升过热",
+      "hypothesis": "量价正相关反映追逐",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "pv_corr_vol_20",
+      "card_path": "factors/research_cards/daily_batch13_yz_kurt.md",
+      "last_metrics": {
+        "ic_mean": 0.02645368015560502,
+        "ic_std": 0.05525278432749276,
+        "ic_ir": 0.4787755129010242,
+        "mono_mean": 0.05104602510460251,
+        "turnover_mean": 0.08393613375034523
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.026691212314272447,
+          "ic_ir": 0.4817012089288426
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.026612293412219892,
+          "ic_ir": 0.4817202243780846
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.026627960337406817,
+          "ic_ir": 0.48206444168876794
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.026627960337406817,
+          "ic_ir": 0.48206444168876794
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.02645368015560502,
+          "ic_ir": 0.4787755129010242
+        }
+      ]
+    },
+    {
+      "name": "ret_kurt_60",
+      "version": "1.0",
+      "desc": "60日收益峰度取负",
+      "formula": "neg(kurt(ret,60))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "高阶矩/厚尾风险",
+      "hypothesis": "厚尾投机偏好导致后续收益偏低",
+      "windows": {
+        "window": 60
+      },
+      "checklist_score": 8,
+      "impl": "ret_kurt_60",
+      "card_path": "factors/research_cards/daily_batch13_yz_kurt.md",
+      "last_metrics": {
+        "ic_mean": 0.009023662322958195,
+        "ic_std": 0.03883638622159606,
+        "ic_ir": 0.23235072057091488,
+        "mono_mean": 0.049570815450643776,
+        "turnover_mean": 0.01991704512511923
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.008639697123894107,
+          "ic_ir": 0.22614506663012568
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.008971190633316759,
+          "ic_ir": 0.23254545282433944
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.00899226664896954,
+          "ic_ir": 0.23260768948121205
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.00899226664896954,
+          "ic_ir": 0.23260768948121205
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.009023662322958195,
+          "ic_ir": 0.23235072057091488
+        }
+      ]
+    },
+    {
+      "name": "reversal_5",
+      "version": "1.0",
+      "desc": "5 日反转：短期跌幅取负，越大越好",
+      "formula": "-(close_t / close_{t-5} - 1)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "课程默认价量因子",
+      "hypothesis": "短期过度反应后均值回复",
+      "windows": {
+        "lookback": 5
+      },
+      "checklist_score": null,
+      "impl": "reversal",
+      "card_path": null,
+      "last_metrics": {
+        "ic_mean": 0.023367980711212988,
+        "ic_std": 0.11690212142346051,
+        "ic_ir": 0.19989355562304947,
+        "mono_mean": 0.06290097629009764,
+        "turnover_mean": 0.2491947639211553
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-14",
+          "status": "inactive",
+          "ic_mean": 0.01067018862376507,
+          "ic_ir": 0.044310903038982795
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "active",
+          "ic_mean": 0.022969838075487612,
+          "ic_ir": 0.1964336743410128
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.0229809799943927,
+          "ic_ir": 0.19652768397333814
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.022553650843066195,
+          "ic_ir": 0.19343061235002892
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.023020478564513055,
+          "ic_ir": 0.19697430951294048
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.023020478564513055,
+          "ic_ir": 0.19697430951294048
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.023367980711212988,
+          "ic_ir": 0.19989355562304947
+        }
+      ]
+    },
+    {
+      "name": "rs_vol_20",
+      "version": "1.0",
+      "desc": "Rogers-Satchell极差波动取负",
+      "formula": "neg(mean(RS,20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "经典Rogers-Satchell",
+      "hypothesis": "高极差波动投机溢价",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "rs_vol_20",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": 0.04643561759435713,
+        "ic_std": 0.16313317417621265,
+        "ic_ir": 0.2846485261434223,
+        "mono_mean": -0.024892703862660952,
+        "turnover_mean": 0.008132016152013217
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.047221606365352324,
+          "ic_ir": 0.2916809312371102
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.04621806565557119,
+          "ic_ir": 0.28451883908943726
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.04700332561522076,
+          "ic_ir": 0.2895413113104066
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.04700332561522076,
+          "ic_ir": 0.2895413113104066
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.04643561759435713,
+          "ic_ir": 0.2846485261434223
+        }
+      ]
+    },
+    {
+      "name": "semi_down_20",
+      "version": "1.0",
+      "desc": "下行半方差取负",
+      "formula": "neg(sqrt(mean(min(r,0)^2,20)))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "下行风险/半方差",
+      "hypothesis": "下行波动高后续偏弱",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "semi_down_20",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": 0.031167744702327794,
+        "ic_std": 0.17479696829735447,
+        "ic_ir": 0.17830826819208348,
+        "mono_mean": 0.031032078103207808,
+        "turnover_mean": 0.02630556818760595
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.035049261315469336,
+          "ic_ir": 0.20197839239472618
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.032914987297983485,
+          "ic_ir": 0.18848966618577304
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03329697960177766,
+          "ic_ir": 0.19103190940324183
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03329697960177766,
+          "ic_ir": 0.19103190940324183
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.031167744702327794,
+          "ic_ir": 0.17830826819208348
+        }
+      ]
+    },
+    {
+      "name": "sw_dir_vol_diff_40",
+      "version": "1.0",
+      "desc": "西南：方向波动率差取负",
+      "formula": "neg(VOL_pos-VOL_neg)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20171221-西南证券-方向波动率选股因子.pdf",
+      "hypothesis": "积极波动过大定价偏高",
+      "windows": {
+        "window": 40
+      },
+      "checklist_score": 8,
+      "impl": "sw_dir_vol_diff_40",
+      "card_path": "factors/research_cards/daily_batch5_dirvol.md",
+      "last_metrics": {
+        "ic_mean": 0.03161273331404807,
+        "ic_std": 0.06892501778483896,
+        "ic_ir": 0.4586539739856511,
+        "mono_mean": 0.044490934449093446,
+        "turnover_mean": 0.03047972580345933
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.032643044449246296,
+          "ic_ir": 0.4708364090200939
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.032643044449246296,
+          "ic_ir": 0.4708364090200939
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.032643044449246296,
+          "ic_ir": 0.4708364090200939
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.032643044449246296,
+          "ic_ir": 0.4708364090200939
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.032643044449246296,
+          "ic_ir": 0.4708364090200939
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.032643044449246296,
+          "ic_ir": 0.4708364090200939
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.032643044449246296,
+          "ic_ir": 0.4708364090200939
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.03241920749250208,
+          "ic_ir": 0.4682969383416902
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03274257561188064,
+          "ic_ir": 0.4749163692919231
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.03274257561188064,
+          "ic_ir": 0.4749163692919231
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.03161273331404807,
+          "ic_ir": 0.4586539739856511
+        }
+      ]
+    },
+    {
+      "name": "sw_mod_skew_40",
+      "version": "1.0",
+      "desc": "西南：修正偏度取负",
+      "formula": "neg(mod_skew40)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20171221-西南证券-方向波动率选股因子.pdf",
+      "hypothesis": "右尾偏度过大定价偏高",
+      "windows": {
+        "window": 40
+      },
+      "checklist_score": 8,
+      "impl": "sw_mod_skew_40",
+      "card_path": "factors/research_cards/daily_batch5_dirvol.md",
+      "last_metrics": {
+        "ic_mean": 0.01952741212685603,
+        "ic_std": 0.04522685612197538,
+        "ic_ir": 0.4317658533281913,
+        "mono_mean": 0.04585121602288984,
+        "turnover_mean": 0.03292666076557733
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01945414633681459,
+          "ic_ir": 0.4312253728649463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01945414633681459,
+          "ic_ir": 0.4312253728649463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01945414633681459,
+          "ic_ir": 0.4312253728649463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01945414633681459,
+          "ic_ir": 0.4312253728649463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01945414633681459,
+          "ic_ir": 0.4312253728649463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01945414633681459,
+          "ic_ir": 0.4312253728649463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01945414633681459,
+          "ic_ir": 0.4312253728649463
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.019206668688006877,
+          "ic_ir": 0.4247451866512528
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.01957160739657791,
+          "ic_ir": 0.4352596952341592
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.01957160739657791,
+          "ic_ir": 0.4352596952341592
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.01952741212685603,
+          "ic_ir": 0.4317658533281913
+        }
+      ]
+    },
+    {
+      "name": "turn_stable_20",
+      "version": "1.0",
+      "desc": "20 日换手稳定：换手率标准差取负",
+      "formula": "-std(turnover_ratio, 20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "东方证券技术分析因子系列·量稳换手率",
+      "hypothesis": "换手稳定反映持续关注，利于趋势承载",
+      "windows": {
+        "lookback": 20
+      },
+      "checklist_score": 8,
+      "impl": "turn_stable",
+      "card_path": "factors/research_cards/turn_stable_20.md",
+      "last_metrics": {
+        "ic_mean": 0.05040265450274342,
+        "ic_std": 0.11729669225089247,
+        "ic_ir": 0.429702266411182,
+        "mono_mean": 0.05258019525801952,
+        "turnover_mean": 0.012679195022383866
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-14",
+          "status": "active",
+          "ic_mean": 0.08406077670630158,
+          "ic_ir": 0.3057012074385165
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "active",
+          "ic_mean": 0.052086453580978145,
+          "ic_ir": 0.4457960860238846
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05194936177747179,
+          "ic_ir": 0.4447755904992401
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.05086709446953652,
+          "ic_ir": 0.43456175816551657
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05146919189514444,
+          "ic_ir": 0.4413143764509979
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05146919189514444,
+          "ic_ir": 0.4413143764509979
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.05040265450274342,
+          "ic_ir": 0.429702266411182
+        }
+      ]
+    },
+    {
+      "name": "ubl",
+      "version": "1.1",
+      "desc": "东吴UBL：蜡烛上_std + 威廉下_mean（取负；z=10 调参）",
+      "formula": "ubl=-(zscore(desize(candle_up_std))+zscore(desize(wms_low_mean)))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "东吴金工：上下影线，蜡烛好还是威廉好？",
+      "hypothesis": "上影不确定性与跨日下影支撑互补，刻画价量博弈 alpha",
+      "windows": {
+        "z_window": 10,
+        "feat_window": 20,
+        "wms_n": 20
+      },
+      "checklist_score": 8,
+      "impl": "ubl",
+      "card_path": "factors/research_cards/ubl.md",
+      "last_metrics": {
+        "ic_mean": 0.02798681333103896,
+        "ic_std": 0.0739331067187289,
+        "ic_ir": 0.37854236854285034,
+        "mono_mean": 0.06157601115760112,
+        "turnover_mean": 0.05973375522776075
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "inactive",
+          "ic_mean": 0.017416700049983812,
+          "ic_ir": 0.24444903122423078
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-15",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.017426153862213516,
+          "ic_ir": 0.2445808661980242
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.017101414002011858,
+          "ic_ir": 0.23952776118074423
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.017246115315615086,
+          "ic_ir": 0.24021484551562478
+        },
+        {
+          "v": "1.1",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.02798681333103896,
+          "ic_ir": 0.37854236854285034
+        }
+      ]
+    },
+    {
+      "name": "xb_amplitude",
+      "version": "1.0",
+      "desc": "西部隔夜：振幅取负",
+      "formula": "neg((high-low)/close)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260311-西部证券-用隔夜交易策略增强指数增强.pdf",
+      "hypothesis": "振幅越大隔夜收益越弱",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "xb_amplitude",
+      "card_path": "factors/research_cards/xb_overnight_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.05347098620358251,
+        "ic_std": 0.1250032881173683,
+        "ic_ir": 0.4277566375164263,
+        "mono_mean": 0.03835425383542537,
+        "turnover_mean": 0.44161925439807415
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05612590100312141,
+          "ic_ir": 0.4506116728667761
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.05426428465713544,
+          "ic_ir": 0.4352921453888472
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05464656099944933,
+          "ic_ir": 0.4391827661477957
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.05464656099944933,
+          "ic_ir": 0.4391827661477957
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.05347098620358251,
+          "ic_ir": 0.4277566375164263
+        }
+      ]
+    },
+    {
+      "name": "xb_intraday",
+      "version": "1.0",
+      "desc": "西部隔夜：日内收益取负",
+      "formula": "neg(close/open-1)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260311-西部证券-用隔夜交易策略增强指数增强.pdf",
+      "hypothesis": "日内涨幅越大隔夜收益越弱",
+      "windows": null,
+      "checklist_score": 8,
+      "impl": "xb_intraday",
+      "card_path": "factors/research_cards/xb_overnight_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.026499825251030448,
+        "ic_std": 0.10683779360221464,
+        "ic_ir": 0.24803793075038882,
+        "mono_mean": 0.1287308228730823,
+        "turnover_mean": 1.00470761082342
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.027443811728412,
+          "ic_ir": 0.25710092899962533
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.02665396909564568,
+          "ic_ir": 0.2491719670632813
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.026205807334749986,
+          "ic_ir": 0.2455814868987736
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.026205807334749986,
+          "ic_ir": 0.2455814868987736
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.026499825251030448,
+          "ic_ir": 0.24803793075038882
+        }
+      ]
+    },
+    {
+      "name": "xb_vol_shock",
+      "version": "1.0",
+      "desc": "西部隔夜：成交量冲击取负",
+      "formula": "neg(volume/EMA_hl60(volume)-1)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20260311-西部证券-用隔夜交易策略增强指数增强.pdf",
+      "hypothesis": "成交量冲击越大隔夜收益越弱",
+      "windows": {
+        "ema_halflife": 60,
+        "ema_min_periods": 120
+      },
+      "checklist_score": 8,
+      "impl": "xb_vol_shock",
+      "card_path": "factors/research_cards/xb_overnight_factors.md",
+      "last_metrics": {
+        "ic_mean": 0.04887708910239938,
+        "ic_std": 0.07037604294541218,
+        "ic_ir": 0.694513176029396,
+        "mono_mean": 0.0691771269177127,
+        "turnover_mean": 0.23281014613189194
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.048983172182053974,
+          "ic_ir": 0.6957770150987695
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.04879044931597098,
+          "ic_ir": 0.6939924062063747
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04891557218920616,
+          "ic_ir": 0.6964188817762551
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.04891557218920616,
+          "ic_ir": 0.6964188817762551
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.04887708910239938,
+          "ic_ir": 0.694513176029396
+        }
+      ]
+    },
+    {
+      "name": "xn_idio_vol_20",
+      "version": "1.0",
+      "desc": "西南异质波动简化：截面残差收益滚动波动取负",
+      "formula": "neg(std(ret-cs_mean(ret),20))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "西南证券-异质波动率（Barra残差简化代理）",
+      "hypothesis": "高异质波动个股风险补偿不足或投机溢价",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "xn_idio_vol_20",
+      "card_path": "factors/research_cards/daily_batch6_max_idio.md",
+      "last_metrics": {
+        "ic_mean": 0.05346503851486547,
+        "ic_std": 0.14080013580176656,
+        "ic_ir": 0.3797229186635107,
+        "mono_mean": 0.025034867503486758,
+        "turnover_mean": 0.016601506692173543
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05628745743307548,
+          "ic_ir": 0.40275673229018044
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05628745743307548,
+          "ic_ir": 0.40275673229018044
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05628745743307548,
+          "ic_ir": 0.40275673229018044
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05628745743307548,
+          "ic_ir": 0.40275673229018044
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05628745743307548,
+          "ic_ir": 0.40275673229018044
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05628745743307548,
+          "ic_ir": 0.40275673229018044
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.054714784461251505,
+          "ic_ir": 0.38997972574242923
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.055146924117737105,
+          "ic_ir": 0.39407781082955007
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.055146924117737105,
+          "ic_ir": 0.39407781082955007
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.05346503851486547,
+          "ic_ir": 0.3797229186635107
+        }
+      ]
+    },
+    {
+      "name": "xn_same_wd_mom_12",
+      "version": "1.0",
+      "desc": "西南：过去12个同工作日收益之和",
+      "formula": "sum(same_weekday_ret,12)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20240801-西南证券-相同工作日动量因子.pdf",
+      "hypothesis": "机构同工作日交易习惯带来同日动量",
+      "windows": {
+        "weeks": 12
+      },
+      "checklist_score": 8,
+      "impl": "xn_same_wd_mom_12",
+      "card_path": "factors/research_cards/daily_batch7_lowvol_wdmom.md",
+      "last_metrics": {
+        "ic_mean": -0.026166273545420168,
+        "ic_std": 0.0793984127896401,
+        "ic_ir": -0.3295566325078269,
+        "mono_mean": -0.05743919885550788,
+        "turnover_mean": 1.0374370135515603
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.02555730369322514,
+          "ic_ir": -0.3238767290237895
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.02555730369322514,
+          "ic_ir": -0.3238767290237895
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.02555730369322514,
+          "ic_ir": -0.3238767290237895
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.02555730369322514,
+          "ic_ir": -0.3238767290237895
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": -0.02555730369322514,
+          "ic_ir": -0.3238767290237895
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": -0.025987542020324668,
+          "ic_ir": -0.32843737352552566
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.026308445358104806,
+          "ic_ir": -0.33243668728430176
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": -0.026308445358104806,
+          "ic_ir": -0.33243668728430176
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": -0.026166273545420168,
+          "ic_ir": -0.3295566325078269
+        }
+      ]
+    },
+    {
+      "name": "xn_same_wd_rev_12",
+      "version": "1.0",
+      "desc": "同工作日收益和取负",
+      "formula": "neg(sum(same_weekday_ret,12))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "西南相同工作日动量（日频反转修正）",
+      "hypothesis": "日频同工作日更偏反转",
+      "windows": {
+        "weeks": 12
+      },
+      "checklist_score": 8,
+      "impl": "xn_same_wd_rev_12",
+      "card_path": "factors/research_cards/daily_batch11_12_vol_mom.md",
+      "last_metrics": {
+        "ic_mean": 0.025459829469379105,
+        "ic_std": 0.07979991326297715,
+        "ic_ir": 0.319045828852938,
+        "mono_mean": 0.05523012552301256,
+        "turnover_mean": 1.037847010906187
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02555730369322514,
+          "ic_ir": 0.3238767290237895
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.025677567202025894,
+          "ic_ir": 0.3230117477298519
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.025906894969569653,
+          "ic_ir": 0.32646733865200056
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.025906894969569653,
+          "ic_ir": 0.32646733865200056
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.025459829469379105,
+          "ic_ir": 0.319045828852938
+        }
+      ]
+    },
+    {
+      "name": "xy_sparse_splice",
+      "version": "1.0",
+      "desc": "兴业：剪接交换稀疏学习（方法）",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260406-兴业证券-基于剪接交换算法的稀疏学习",
+      "hypothesis": "非本仓库日频选股可落地，仅作研报扫描记录",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/xy_sparse_splice.md"
+    },
+    {
+      "name": "xy_west_learn_186",
+      "version": "1.0",
+      "desc": "兴业：西学东渐海外文献推荐",
+      "formula": "N/A",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "retired",
+      "source": "20260408-兴业证券-西学东渐系列之一百八十六",
+      "hypothesis": "非本仓库日频选股可落地，仅作研报扫描记录",
+      "windows": null,
+      "checklist_score": 3,
+      "impl": null,
+      "card_path": "factors/research_cards/xy_west_learn_186.md"
+    },
+    {
+      "name": "yz_vol_20",
+      "version": "1.0",
+      "desc": "Yang-Zhang波动取负",
+      "formula": "neg(sqrt(Vo+k*Vc+(1-k)*RS))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "经典Yang-Zhang波动率",
+      "hypothesis": "高YZ波动投机溢价",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "yz_vol_20",
+      "card_path": "factors/research_cards/daily_batch13_yz_kurt.md",
+      "last_metrics": {
+        "ic_mean": 0.04761907824216028,
+        "ic_std": 0.179281160695924,
+        "ic_ir": 0.26561116660175055,
+        "mono_mean": -0.011924686192468625,
+        "turnover_mean": 0.007337946205480276
+      },
+      "last_health": "CRITICAL",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.05148910937424892,
+          "ic_ir": 0.28919171835784185
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.049115437316843175,
+          "ic_ir": 0.27439550466775964
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.049666247745799946,
+          "ic_ir": 0.27816798896436273
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.049666247745799946,
+          "ic_ir": 0.27816798896436273
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.04761907824216028,
+          "ic_ir": 0.26561116660175055
+        }
+      ]
+    },
+    {
+      "name": "zt_illiq_20",
+      "version": "1.0",
+      "desc": "中投Amihud非流动性ILLIQ",
+      "formula": "mean(abs(ret)/money,20)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "active",
+      "source": "20120907-中投证券-ILLIQ非流动性因子.pdf",
+      "hypothesis": "非流动性溢价",
+      "windows": {
+        "window": 20
+      },
+      "checklist_score": 8,
+      "impl": "zt_illiq_20",
+      "card_path": "factors/research_cards/daily_batch_illiq_oi_anchor.md",
+      "last_metrics": {
+        "ic_mean": 0.026158522514728937,
+        "ic_std": 0.08674745043943995,
+        "ic_ir": 0.30154802685516047,
+        "mono_mean": 0.04135285913528591,
+        "turnover_mean": 0.006281639112890012
+      },
+      "last_health": "HEALTHY",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "active",
+          "ic_mean": 0.02722100302605401,
+          "ic_ir": 0.317756959065557
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "active",
+          "ic_mean": 0.02635528312614637,
+          "ic_ir": 0.30671437835303605
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.026806114136563766,
+          "ic_ir": 0.3117992828568426
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "active",
+          "ic_mean": 0.026806114136563766,
+          "ic_ir": 0.3117992828568426
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "active",
+          "ic_mean": 0.026158522514728937,
+          "ic_ir": 0.30154802685516047
+        }
+      ]
+    },
+    {
+      "name": "zy_anchor_rev",
+      "version": "1.0",
+      "desc": "中银锚定反转取负",
+      "formula": "neg(close/anchor-1)",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20220902-中银国际-锚定反转因子.pdf",
+      "hypothesis": "锚定偏误下偏离越大越易反转",
+      "windows": {
+        "trend_i": 10,
+        "anchor_j": 65
+      },
+      "checklist_score": 8,
+      "impl": "zy_anchor_rev",
+      "card_path": "factors/research_cards/daily_batch_illiq_oi_anchor.md",
+      "last_metrics": {
+        "ic_mean": 0.024814248240816458,
+        "ic_std": 0.10442547455728611,
+        "ic_ir": 0.23762638710541617,
+        "mono_mean": -0.015522174535050066,
+        "turnover_mean": 0.19759617403405558
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.02548260690292598,
+          "ic_ir": 0.24603354705420752
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.02480220209348875,
+          "ic_ir": 0.23906298927129188
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.025044464853856134,
+          "ic_ir": 0.24104343373002757
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.025044464853856134,
+          "ic_ir": 0.24104343373002757
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.024814248240816458,
+          "ic_ir": 0.23762638710541617
+        }
+      ]
+    },
+    {
+      "name": "zy_anchor_rev_vol",
+      "version": "1.0",
+      "desc": "中银锚定反转乘波动取负",
+      "formula": "neg((close/anchor-1)*std(ret,j))",
+      "data_deps": [
+        "data_daily"
+      ],
+      "status": "inactive",
+      "source": "20220902-中银国际-锚定反转因子.pdf",
+      "hypothesis": "高波强化锚定反转",
+      "windows": {
+        "trend_i": 10,
+        "anchor_j": 65
+      },
+      "checklist_score": 8,
+      "impl": "zy_anchor_rev_vol",
+      "card_path": "factors/research_cards/daily_batch_illiq_oi_anchor.md",
+      "last_metrics": {
+        "ic_mean": 0.01597538807266705,
+        "ic_std": 0.11174773047922322,
+        "ic_ir": 0.14295939616990508,
+        "mono_mean": -0.021745350500715313,
+        "turnover_mean": 0.2016028490499981
+      },
+      "last_health": "WARNING",
+      "updated_at": "2026-09-23",
+      "versions": [
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-16",
+          "status": "inactive",
+          "ic_mean": 0.01731954487327179,
+          "ic_ir": 0.1560781260193763
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-17",
+          "status": "inactive",
+          "ic_mean": 0.01646119795221302,
+          "ic_ir": 0.14825462605685552
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.016461054254273962,
+          "ic_ir": 0.14794023053096095
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-18",
+          "status": "inactive",
+          "ic_mean": 0.016461054254273962,
+          "ic_ir": 0.14794023053096095
+        },
+        {
+          "v": "1.0",
+          "date": "2026-09-23",
+          "status": "inactive",
+          "ic_mean": 0.01597538807266705,
+          "ic_ir": 0.14295939616990508
+        }
+      ]
+    }
+  ]
+}

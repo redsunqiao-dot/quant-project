@@ -1,0 +1,60 @@
+# 环境与本地工具
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.python-version
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+
+# ---------- 大体量本地数据（不入库，本地自行拉取）----------
+# 行情 / 财务 / 估值 / 行业等
+data/**
+!data/README.md
+!data/.gitkeep
+
+# 因子中间层与合成分 parquet（可重算）
+factors/raw/
+factors/filtered/
+factors/preprocessed/
+factors/neutralized/
+factors/industry_neutralized/
+factors/composite/
+factors/_tmp_*/
+factors/research_reports/*
+!factors/research_reports/.gitkeep
+
+# 运行产物与实验输出
+outputs/**
+!outputs/.gitkeep
+!outputs/live/.gitkeep
+
+# 日志（若落在仓库根）
+*.log
+
+# 可选：本机 Cursor 会话缓存不入库；规则文件保留
+.cursor/**
+!.cursor/rules/
+!.cursor/rules/**

@@ -1,0 +1,19 @@
+# 与 pyproject.toml 对齐的 pip 安装清单（开发可优先用 uv sync）
+akshare>=1.18.19
+backtrader>=1.9.78.123
+baostock>=0.9.3
+cryptography>=45.0.0
+jupyter>=1.1.1
+lightgbm>=4.0.0
+matplotlib>=3.10.0
+mplfinance>=0.12.10b0
+numpy>=2.0.0
+pandas>=2.2.0
+pyarrow>=17.0.0
+scikit-learn>=1.5.0
+scipy>=1.13.0
+seaborn>=0.13.0
+shap>=0.44.0
+statsmodels>=0.14.0
+xgboost>=2.0.0
+yfinance>=0.2.0
