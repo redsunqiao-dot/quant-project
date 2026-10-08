@@ -84,7 +84,8 @@ class BacktestEngine:
         rebalance_freq = 1,   # 调仓频率(天)或'month_start'
         enable_cost: bool = True,  # 是否计算交易成本
         calculate_ic: bool = True, # 是否计算 IC 指标
-        n_groups: int = 0          # 分组数量(>1 时计算分组回测)
+        n_groups: int = 0,         # 分组数量(>1 时计算分组回测)
+        max_per_industry: int = 2, # 单行业持仓上限；<=0 关闭
     ) -> dict:
         """
         运行回测
@@ -133,7 +134,8 @@ class BacktestEngine:
             rebalance_freq=rebalance_freq,
             enable_cost=enable_cost,
             calculate_ic=calculate_ic,
-            n_groups=n_groups
+            n_groups=n_groups,
+            max_per_industry=max_per_industry,
         )
         daily_returns_list = daily_metrics['daily_returns_list']
         daily_returns_dates = daily_metrics['daily_returns_dates']
@@ -201,7 +203,8 @@ class BacktestEngine:
         rebalance_freq,
         enable_cost: bool,
         calculate_ic: bool,
-        n_groups: int
+        n_groups: int,
+        max_per_industry: int = 2,
     ) -> dict:
         """
         逐日回测主循环 (已拆分为小步骤,便于单测或替换逻辑)
@@ -267,7 +270,9 @@ class BacktestEngine:
                     selected_stocks = self._generate_signal(
                         factor_df=factor_df,
                         strategy=strategy,
-                        top_n=top_n
+                        top_n=top_n,
+                        date=date,
+                        max_per_industry=max_per_industry,
                     )
                     if selected_stocks:
                         pending_signal = selected_stocks
@@ -295,10 +300,24 @@ class BacktestEngine:
         self,
         factor_df: pd.DataFrame,
         strategy: Strategy,
-        top_n: int
+        top_n: int,
+        date: Optional[str] = None,
+        max_per_industry: int = 2,
     ) -> list:
-        # 选股信号由策略负责
-        return strategy.generate_signal(factor_df=factor_df, top_n=top_n)
+        # 选股信号由策略负责；可选单行业只数上限
+        ranked = strategy.generate_signal(
+            factor_df=factor_df, top_n=max(len(factor_df), top_n)
+        )
+        if max_per_industry <= 0 or not date:
+            return ranked[:top_n]
+        from src.common.holding_constraints import apply_industry_cap, load_industry_map
+
+        ind_map = load_industry_map(
+            date, industry_dir=str(Path(self.loader.data_dir) / "data_industry")
+        )
+        return apply_industry_cap(
+            ranked, ind_map, top_n=top_n, max_per_industry=max_per_industry
+        )
 
     def _should_rebalance(
         self,

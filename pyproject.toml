@@ -30,6 +30,9 @@ dev = [
     "pytest>=8.0.0",
     "ruff>=0.8.0",
 ]
+data-alt = [
+    "tushare>=1.4.0",
+]
 
 [build-system]
 requires = ["hatchling"]

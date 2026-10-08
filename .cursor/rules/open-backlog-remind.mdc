@@ -6,7 +6,11 @@ alwaysApply: true
 # 未完成 backlog
 
 当用户提到下列任一话题时，**主动简要提醒**对应未完成项，不要等用户再问：
-第 12/13/14 课、合成分回测、baostock/财务/估值、模块 6、平滑换因子、UBL、还缺什么/下一步、加分项/可选缺口、实盘。
+合成分回测、baostock/财务/估值、模块 6、平滑换因子、UBL、还缺什么/下一步、加分项/可选缺口、实盘。
+
+第 12–15 课已精读；落地优先级见
+`.cursor/rules/course-optimize-checklist.mdc` **结课汇总**（勿中途大改主链路）。
+提到「课程优化 / 逐课 / 结课汇总」时同步查阅该清单。
 
 ## 主链路（已接通，勿再当缺口）
 1. **合成分 → 含成本回测入口已接通（2026-09-15）**
@@ -15,18 +19,19 @@ alwaysApply: true
    - `--live` / `--backtest` 默认策略已为 composite；可选：管线整段估权与 multifactor 滚动合成再贴紧
 
 ## 数据（解封后再做，勿频繁重试 baostock）
-2. **财务 cache/PIT 续拉**：cache 曾约 4021，待补约 1225（workers=1 进行中/可续）；近窗 PIT≈247 日已有
+2. ~~**财务 cache/PIT**~~：cache 5244 / pending 0；PIT 近窗约 252 日已重写（2026-10-07）
 3. **估值近窗**：已齐约 247 日（勿再当缺口）
-4. **模块 6**：代码已落地；仅 `m6_bp` 过门，EP/ROE/PEG/`m6_dy` inactive；组合层股息&PEG 未做
+4. **模块 6**：代码已落地；`m6_bp`/`m6_ep` active，ROE/PEG/`m6_dy` inactive；组合层股息&PEG 未做；过门后再谈进冻结池
 
 ## 因子研究后续
 5. **按日期继续扫研报 PDF**：假说 → 公式 → 验证门 → `registry`
 6. **UBL**：已调参 active（z=10）；OOS 显示加进合成变差 → **不进冻结名单**
-7. **平滑换因子**：等名单稳定后再做；日更已用 `composite_universe.json` 冻结
+7. **平滑换因子**：管线已接入（`smooth_universe` + universe JSON `smooth_replace`）；默认 `enabled=false`，名单变更时再开
 8b. **冻结合成**：`b_pool_pv_32_oos`（B33 去 `fz_panic_ret_20`，OOS 优胜）
 
 ## 可选小缺口（工程）
 8. ~~剔上市不满 1 年、去极值改 MAD、过户费~~（2026-09-23 已落地；上市日用 data_daily 首次出现近似）
+8c. ~~Risk 单行业≤2 / 单票上限~~（2026-10-07：live/backtest 默认行业≤2；`--max-weight` 默认 0.15）
 
 ## 后续可做 / 加分项
 ### 第12课

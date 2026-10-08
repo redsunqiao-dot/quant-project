@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quant Ops Desk</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="brand">Quant Ops Desk</p>
+      <p class="sub">日更 · 回测 · 因子体检 · 出图</p>
+    </div>
+    <div class="meta">
+      <span id="generated">—</span>
+      <button type="button" id="refreshBtn">刷新当前页</button>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="分区">
+    <button type="button" class="tab active" data-tab="ops">日更作战台</button>
+    <button type="button" class="tab" data-tab="backtest">回测报告</button>
+    <button type="button" class="tab" data-tab="factors">因子体检</button>
+    <button type="button" class="tab" data-tab="charts">出图</button>
+  </nav>
+
+  <section id="panel-ops" class="panel active"></section>
+  <section id="panel-backtest" class="panel"></section>
+  <section id="panel-factors" class="panel"></section>
+  <section id="panel-charts" class="panel"></section>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

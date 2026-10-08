@@ -1,23 +1,20 @@
 {
-  "name": "b_pool_pv_32_oos",
-  "desc": "日更主合成冻结名单：B33 去掉 fz_panic_ret_20（2026-09-23 OOS 优胜）；不含 m6/ubl；成员变更须研究+OOS 后再改",
-  "updated_at": "2026-09-23",
+  "name": "st_pool_pv_31_oos",
+  "desc": "短窗轨冻结：主池去掉 db_csk_down_120（2026-09-30 OOS 优胜）；仅用于 composite_st / paper_st",
+  "updated_at": "2026-09-30",
   "weight_method": "ic_ir",
-  "rolling_lookback": 60,
-  "rolling_min_history": 20,
-  "note": "日更默认静态 IC_IR；OOS(后1/3)：drop_fz_panic > B33 > +m6bp ≈，+ubl 更差。平滑换因子：名单变更时取消注释并填 prev/start_date",
-  "smooth_replace": {
-    "enabled": false,
-    "prev": "factors/composite_universe_prev.json",
-    "start_date": "",
-    "horizon_days": 20
-  },
+  "lookback_days": 60,
+  "parent": "b_pool_pv_32_oos",
+  "dropped": [
+    "db_csk_down_120"
+  ],
   "oos": {
-    "train": "2025-09-25~2026-05-29",
-    "test": "2026-06-01~2026-09-21",
-    "winner": "drop_fz_panic",
-    "oos_ret": 0.0481,
-    "oos_sharpe": 0.505
+    "train": "2025-09-16~2026-05-29",
+    "weight": "2026-07-01~2026-09-22 为日更口径；OOS 验证时权重用训练末60日",
+    "test": "2026-06-01~2026-09-22",
+    "winner": "db_csk_down_120",
+    "oos_ret": 0.1538,
+    "oos_sharpe": 1.369
   },
   "factors": [
     "cj_corr_vol_close_20",
@@ -26,7 +23,6 @@
     "cjx_oi_spread_20",
     "cjx_overnight_vol_20",
     "db_csk_comp_120",
-    "db_csk_down_120",
     "db_csk_xyy_120",
     "df_ext_rev_20",
     "df_maxret_20",

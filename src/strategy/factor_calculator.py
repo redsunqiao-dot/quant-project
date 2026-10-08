@@ -164,14 +164,16 @@ class FactorCalculator:
             ubl_wms_n=ubl_wms_n,
         )
         from src.research.factor_ops import resolve_op
-        from src.research.panel_dispatch import M6_OPS
+        from src.research.panel_dispatch import M6_OPS, SCAN26_FUND_OPS
         from src.research.impl.module6_factors import (
             compute_module6_panels,
             load_fundamental_long,
             load_valuation_long,
         )
+        from src.research.impl.scan2026_factors import compute_gp_delta_panels
 
         m6_names = [n for n in selected if resolve_op(n) in M6_OPS]
+        fund_scan_names = [n for n in selected if resolve_op(n) in SCAN26_FUND_OPS]
 
         trade_dates = self.loader.get_all_dates()
         target = [d for d in trade_dates if start_date <= d <= end_date]
@@ -202,7 +204,7 @@ class FactorCalculator:
             part = daily[[c for c in cols if c in daily.columns]].copy()
             part["date"] = date
             frames.append(part)
-        if not frames and not m6_names:
+        if not frames and not m6_names and not fund_scan_names:
             return []
 
         series_map = {}
@@ -256,6 +258,15 @@ class FactorCalculator:
             for name in m6_names:
                 if name in m6_panels:
                     series_map[name] = m6_panels[name]
+
+        if fund_scan_names:
+            fund_long = load_fundamental_long(self.loader.data_dir, hist_dates)
+            gp_panels = compute_gp_delta_panels(fund_long, lag=60)
+            for name in fund_scan_names:
+                if name in gp_panels:
+                    series_map[name] = gp_panels[name]
+                else:
+                    print(f"警告: {name} 财务 PIT 不足，跳过")
 
         written = []
         self.factor_dir.mkdir(parents=True, exist_ok=True)

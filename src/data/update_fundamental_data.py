@@ -244,9 +244,27 @@ def build_pit_panel(fund: pd.DataFrame, dates: Sequence[str]) -> pd.DataFrame:
     return out[FUND_COLS]
 
 
+def _local_trade_calendar(data_dir: Path) -> List[str]:
+    """离线交易日：优先 date.pkl，否则用 data_daily 文件名。"""
+    date_pkl = data_dir / "date.pkl"
+    if date_pkl.exists():
+        import pickle
+
+        with open(date_pkl, "rb") as f:
+            cal = pickle.load(f)
+        return [str(d) for d in cal]
+    daily = sorted(p.stem for p in (data_dir / "data_daily").glob("????-??-??.csv"))
+    return daily
+
+
 def resolve_dates(data_dir: Path, start: str, end: str) -> List[str]:
     """PIT 落盘日期默认对齐估值或日线最近 240 天。"""
     calendar = load_trade_dates("2014-01-01", time.strftime("%Y-%m-%d"))
+    if not calendar:
+        # baostock 不可用时回退本地日历（黑名单 / skip-fetch）
+        calendar = _local_trade_calendar(data_dir)
+    if not calendar:
+        raise FileNotFoundError("无交易日历：请登录 baostock 或准备 data/date.pkl")
     today = time.strftime("%Y-%m-%d")
     default_end = max(d for d in calendar if d <= today)
     last_daily = last_csv_date(data_dir / "data_daily")
@@ -291,21 +309,36 @@ def main():
     year_end = args.year_end or int(time.strftime("%Y"))
     periods = year_quarter_range(args.year_start, year_end)
 
-    login = bs.login()
-    if login.error_code != "0":
-        raise RuntimeError(f"baostock 登录失败: {login.error_msg}")
+    # skip-fetch 只读本地缓存写 PIT，不登录（黑名单期间仍可追日）
+    logged_in = False
+    if not args.skip_fetch:
+        login = bs.login()
+        if login.error_code != "0":
+            raise RuntimeError(f"baostock 登录失败: {login.error_msg}")
+        logged_in = True
 
     try:
         need_dates = resolve_dates(data_dir, args.start, args.end)
+        # PIT 已与日线对齐时，仍允许补缺失股票缓存，并重写末日截面
+        rewrite_existing_pit = bool(args.overwrite)
         if not need_dates:
-            print("没有需要更新的交易日")
-            return
-        print(f"财务 PIT 区间: {need_dates[0]} ~ {need_dates[-1]}，共 {len(need_dates)} 天")
+            if args.skip_fetch:
+                print("没有需要更新的交易日")
+                return
+            last = last_csv_date(fund_dir) or last_csv_date(data_dir / "data_daily")
+            if not last:
+                print("没有需要更新的交易日")
+                return
+            need_dates = [last]
+            rewrite_existing_pit = True
+            print(f"PIT 已齐至 {last}，仅补缺失财务缓存并重写当日截面")
+        else:
+            print(f"财务 PIT 区间: {need_dates[0]} ~ {need_dates[-1]}，共 {len(need_dates)} 天")
         print(f"季报年份: {args.year_start} ~ {year_end}")
 
-        stocks = load_stock_table(need_dates[0], need_dates[-1])
-        codes = stocks["code"].tolist()
         if not args.skip_fetch:
+            stocks = load_stock_table(need_dates[0], need_dates[-1])
+            codes = stocks["code"].tolist()
             pending = []
             for code in codes:
                 path = cache_file(cache_dir, code)
@@ -314,6 +347,12 @@ def main():
             print(f"股票池 {len(codes)}，待补财务缓存 {len(pending)}，并行 {args.workers}")
             if pending:
                 cache_all(pending, periods, cache_dir, args.workers, refresh=args.refresh_cache)
+            elif rewrite_existing_pit and not args.overwrite:
+                # 无新缓存且非强制覆盖时，不必重写 PIT
+                print("无待补缓存，跳过 PIT 重写")
+                return
+        else:
+            print("跳过拉取：仅用本地财务缓存生成 PIT")
 
         fund = load_all_fund_cache(cache_dir)
         if fund.empty:
@@ -321,7 +360,7 @@ def main():
         print(f"财务缓存记录 {len(fund)} 条，股票 {fund['code'].nunique()} 只")
 
         panel = build_pit_panel(fund, need_dates)
-        written = write_by_date(panel, fund_dir, skip_existing=not args.overwrite)
+        written = write_by_date(panel, fund_dir, skip_existing=not rewrite_existing_pit)
         print(f"新增财务 PIT 文件 {written} 个，最后一日: {last_csv_date(fund_dir)}")
         if not panel.empty:
             sample = panel[panel["date"] == need_dates[-1]]
@@ -331,7 +370,8 @@ def main():
                 f"yoy_ni 非空 {sample['yoy_ni'].notna().sum()}"
             )
     finally:
-        bs.logout()
+        if logged_in:
+            bs.logout()
 
 
 if __name__ == "__main__":

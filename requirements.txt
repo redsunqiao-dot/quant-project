@@ -17,3 +17,5 @@ shap>=0.44.0
 statsmodels>=0.14.0
 xgboost>=2.0.0
 yfinance>=0.2.0
+# 可选备源（baostock 不可用时）:
+# tushare>=1.4.0

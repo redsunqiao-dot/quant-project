@@ -1,0 +1,11 @@
+{
+  "source": "st_track_oos_20260930",
+  "lookback": 60,
+  "method": "ic_ir",
+  "dropped": "db_csk_down_120",
+  "n_factors": 31,
+  "n_days": 247,
+  "oos_winner": true,
+  "oos_test": "2026-06-01~2026-09-22",
+  "note": "OOS优胜替换原IS的 drop_ky_ideal_amp_20；主 factors/composite 未改"
+}

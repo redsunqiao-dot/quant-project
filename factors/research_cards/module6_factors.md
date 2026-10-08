@@ -18,3 +18,8 @@
 
 ## 组合层
 PEG 与股息率组合策略仍可在组合/回测层叠加，非单因子字段。
+
+## 验证（财务 cache 齐后重写 PIT）
+- 2026-10-07：cache 5244 只、pending=0；PIT 2025-09-16～2026-09-30 全日约 5200 只重写。
+- 窗内结果：`m6_bp_mrq` / `m6_ep_ttm` **active**；ROE / yoy / PEG / dy **inactive**。
+- OOS 加进合成此前已测变差 → **不进** `b_pool_pv_32_oos`。

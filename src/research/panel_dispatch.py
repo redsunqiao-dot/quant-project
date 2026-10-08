@@ -13,6 +13,10 @@ import pandas as pd
 from src.common.utils import estimate_ln_circ_mktcap
 from src.research.factor_ops import resolve_op
 from src.research.impl.amihud_illiq import compute_illiq_panels, illiq_lookback
+from src.research.impl.cutting_ctr_factors import (
+    compute_cutting_ctr_panels,
+    cutting_ctr_lookback,
+)
 from src.research.impl.cj_highvol_factors import (
     cj_highvol_lookback,
     compute_cj_highvol_panels,
@@ -71,6 +75,23 @@ from src.research.impl.xb_overnight_factors import (
 from src.research.impl.zy_anchor_reversal import (
     compute_zy_anchor_panels,
     zy_anchor_lookback,
+)
+from src.research.impl.scan2026_factors import (
+    compute_chip_cost_panels,
+    compute_path_convex_panels,
+    scan2026_lookback,
+)
+from src.research.impl.orgscan_factors import (
+    compute_gs_near_high_panels,
+    compute_gs_rsi_panels,
+    compute_ky_ideal_turn_panels,
+    compute_fz_moth_panels,
+    compute_hx_pv_rev_panels,
+    compute_xb_toi_panels,
+    compute_zs_atv_panels,
+    compute_zs_patv_panels,
+    compute_zs_tug_panels,
+    orgscan_lookback,
 )
 
 
@@ -132,6 +153,43 @@ GS_HL_OPS = frozenset(
 )
 M6_OPS = frozenset(
     {"m6_ep_ttm", "m6_bp_mrq", "m6_roe", "m6_yoy_ni", "m6_peg_inv", "m6_dy"}
+)
+CTR_OPS = frozenset(
+    {
+        "ctr_turn_spread_20",
+        "ctr_vol_cut_20",
+        "ctr_ideal_amp_rev_20",
+    }
+)
+SCAN26_OPS = frozenset({"ha_path_convex_20", "sw_chip_cost_60"})
+SCAN26_FUND_OPS = frozenset({"yd_gp_delta"})
+ORGSCAN_OPS = frozenset(
+    {
+        "gs_rsi_20",
+        "zs_atv_20",
+        "zs_patv_d20",
+        "zs_tug_nr_20",
+        "zs_tug_pr_20",
+        "zs_yuli_20",
+        "ky_ideal_turn_20",
+        "gs_near_high_252",
+        "fz_taylor_jump_20",
+        "fz_mod_amp_20",
+        "hx_pv_rev_20",
+        "xb_toi_20",
+    }
+)
+ORGSCAN_VOL_OPS = frozenset({"zs_atv_20", "zs_patv_d20", "hx_pv_rev_20", "xb_toi_20"})
+ORGSCAN_OHLC_OPS = frozenset(
+    {
+        "zs_tug_nr_20",
+        "zs_tug_pr_20",
+        "zs_yuli_20",
+        "gs_near_high_252",
+        "fz_taylor_jump_20",
+        "fz_mod_amp_20",
+        "xb_toi_20",
+    }
 )
 
 
@@ -202,6 +260,10 @@ def required_lookback(
         (_pick(selected, B13_OPS), batch13_lookback()),
         (_pick(selected, GS_HL_OPS), gs_hl_vol_lookback()),
         (_pick(selected, M6_OPS), module6_lookback()),
+        (_pick(selected, CTR_OPS), cutting_ctr_lookback()),
+        (_pick(selected, SCAN26_OPS), scan2026_lookback()),
+        (_pick(selected, SCAN26_FUND_OPS), 65),
+        (_pick(selected, ORGSCAN_OPS), orgscan_lookback()),
     ]
     need_ohlc = bool(ubl)
     for names, lb in groups:
@@ -254,6 +316,9 @@ def build_series_map(
     b11_names = _pick(selected, B11_OPS)
     b13_names = _pick(selected, B13_OPS)
     gs_hl_names = _pick(selected, GS_HL_OPS)
+    ctr_names = _pick(selected, CTR_OPS)
+    scan26_names = _pick(selected, SCAN26_OPS)
+    orgscan_names = _pick(selected, ORGSCAN_OPS)
 
     series_map: Dict[str, pd.DataFrame] = {}
     for name in mom_names:
@@ -298,6 +363,17 @@ def build_series_map(
     if b9_names:
         _assign(series_map, b9_names, compute_batch9_panels(close), "日频批次9")
 
+    if scan26_names and "ha_path_convex_20" in scan26_names:
+        series_map["ha_path_convex_20"] = compute_path_convex_panels(close)[
+            "ha_path_convex_20"
+        ]
+    if orgscan_names and "gs_rsi_20" in orgscan_names:
+        series_map["gs_rsi_20"] = compute_gs_rsi_panels(close)["gs_rsi_20"]
+    if orgscan_names and "ky_ideal_turn_20" in orgscan_names:
+        series_map["ky_ideal_turn_20"] = compute_ky_ideal_turn_panels(close, turn)[
+            "ky_ideal_turn_20"
+        ]
+
     need_ohlc_block = bool(
         ubl_names
         or gfn_names
@@ -314,6 +390,10 @@ def build_series_map(
         or b11_names
         or b13_names
         or gs_hl_names
+        or ctr_names
+        or ("sw_chip_cost_60" in scan26_names)
+        or bool(_pick(orgscan_names, ORGSCAN_VOL_OPS))
+        or bool(_pick(orgscan_names, ORGSCAN_OHLC_OPS))
     )
     if not need_ohlc_block:
         return series_map
@@ -441,5 +521,44 @@ def build_series_map(
             compute_gs_hl_vol_panels(close, volume),
             "国盛高低位放量",
         )
+    if ctr_names:
+        _assign(
+            series_map,
+            ctr_names,
+            compute_cutting_ctr_panels(close, turn, volume, high=high, low=low),
+            "切割轨 CTR",
+        )
+    if "sw_chip_cost_60" in scan26_names:
+        series_map["sw_chip_cost_60"] = compute_chip_cost_panels(
+            close, turn, money, volume
+        )["sw_chip_cost_60"]
+    if "zs_atv_20" in orgscan_names:
+        series_map["zs_atv_20"] = compute_zs_atv_panels(volume)["zs_atv_20"]
+    if "zs_patv_d20" in orgscan_names:
+        series_map["zs_patv_d20"] = compute_zs_patv_panels(volume)["zs_patv_d20"]
+    tug_names = [
+        n for n in orgscan_names if n in {"zs_tug_nr_20", "zs_tug_pr_20", "zs_yuli_20"}
+    ]
+    if tug_names:
+        tug_panels = compute_zs_tug_panels(open_, close)
+        for name in tug_names:
+            series_map[name] = tug_panels[name]
+    if "gs_near_high_252" in orgscan_names:
+        series_map["gs_near_high_252"] = compute_gs_near_high_panels(close, high)[
+            "gs_near_high_252"
+        ]
+    moth_names = [n for n in orgscan_names if n in {"fz_taylor_jump_20", "fz_mod_amp_20"}]
+    if moth_names:
+        moth_panels = compute_fz_moth_panels(high, low, close)
+        for name in moth_names:
+            series_map[name] = moth_panels[name]
+    if "hx_pv_rev_20" in orgscan_names:
+        series_map["hx_pv_rev_20"] = compute_hx_pv_rev_panels(close, volume)[
+            "hx_pv_rev_20"
+        ]
+    if "xb_toi_20" in orgscan_names:
+        series_map["xb_toi_20"] = compute_xb_toi_panels(open_, close, volume)[
+            "xb_toi_20"
+        ]
 
     return series_map

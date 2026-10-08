@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.common.holding_constraints import apply_industry_cap, load_industry_map
 from src.data.data_loader import DataLoader
 from src.data.tradeable_filter import keep_tradeable, is_board_allowed
 
@@ -19,15 +20,38 @@ HOLDINGS_FILE = LIVE_DIR / "current_holdings.json"
 LOT_SIZE = 100
 
 
-def latest_signal_date(loader: DataLoader) -> str:
-    """取同时具备日线和交易状态的最后一个交易日。"""
+def resolve_live_paths(live_dir: str | Path | None = None) -> tuple[Path, Path]:
+    """解析 live 输出目录与持仓文件路径。"""
+    base = Path(live_dir) if live_dir else LIVE_DIR
+    base.mkdir(parents=True, exist_ok=True)
+    return base, base / "current_holdings.json"
+
+
+def latest_signal_date(
+    loader: DataLoader,
+    factor_dir: str | Path | None = None,
+) -> str:
+    """取同时具备日线、交易状态（及可选合成分截面）的最后一个交易日。
+
+    行情可能比合成分更新更快；传 factor_dir 时要求该日也有对应因子文件，
+    避免 --skip-pipeline 时落到「有行情、无合成分」的空截面。
+    """
+    from src.common.utils import resolve_dated_file
+
     dates = loader.get_all_dates()
+    factor_path = Path(factor_dir) if factor_dir else None
     for date in reversed(dates):
         daily = loader.data_dir / "data_daily" / f"{date}.csv"
         status = loader.data_dir / "data_ud_new" / f"{date}.csv"
-        if daily.exists() and status.exists():
-            return date
-    raise FileNotFoundError("没有可用的信号日期")
+        if not (daily.exists() and status.exists()):
+            continue
+        if factor_path is not None and resolve_dated_file(factor_path, date) is None:
+            continue
+        return date
+    msg = "没有可用的信号日期"
+    if factor_path is not None:
+        msg += f"（行情与合成分无交集：{factor_path}）"
+    raise FileNotFoundError(msg)
 
 
 def next_trade_date(loader: DataLoader, signal_date: str) -> str:
@@ -39,23 +63,29 @@ def next_trade_date(loader: DataLoader, signal_date: str) -> str:
     return "下一交易日"
 
 
-def load_previous_holdings() -> list:
+def load_previous_holdings(live_dir: str | Path | None = None) -> list:
     """读取上一次保存的持仓代码。"""
-    if not HOLDINGS_FILE.exists():
+    _, holdings_file = resolve_live_paths(live_dir)
+    if not holdings_file.exists():
         return []
-    payload = json.loads(HOLDINGS_FILE.read_text(encoding="utf-8"))
+    payload = json.loads(holdings_file.read_text(encoding="utf-8"))
     return list(payload.get("codes", []))
 
 
-def save_holdings(signal_date: str, codes: list, capital: float) -> None:
+def save_holdings(
+    signal_date: str,
+    codes: list,
+    capital: float,
+    live_dir: str | Path | None = None,
+) -> None:
     """保存本期目标持仓，供下次对照。"""
-    LIVE_DIR.mkdir(parents=True, exist_ok=True)
+    base, holdings_file = resolve_live_paths(live_dir)
     payload = {
         "date": signal_date,
         "codes": codes,
         "capital": capital,
     }
-    HOLDINGS_FILE.write_text(
+    holdings_file.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
@@ -159,20 +189,28 @@ def run_live(args) -> pd.DataFrame:
     from main import build_strategy
 
     loader = DataLoader(args.data_dir)
-    signal_date = latest_signal_date(loader)
-    exec_date = next_trade_date(loader, signal_date)
     factor_root = getattr(args, "factor_root", "./factors")
+    live_dir = getattr(args, "live_dir", None) or str(LIVE_DIR)
+    live_base, _ = resolve_live_paths(live_dir)
     strategy = build_strategy(
         args.strategy,
         args.period,
         data_dir=args.data_dir,
         factor_root=factor_root,
+        composite_name=getattr(args, "composite_name", "") or "",
     )
+    # 合成分策略：信号日对齐「行情 ∩ 合成分」最新日，避免行情超前导致空截面
+    factor_dir = getattr(strategy, "factor_dir", None)
+    signal_date = latest_signal_date(loader, factor_dir=factor_dir)
+    exec_date = next_trade_date(loader, signal_date)
 
     factor_df = strategy.calculate_factor(signal_date, loader)
     factor_df = keep_tradeable(factor_df, signal_date, loader)
     if factor_df.empty:
-        raise RuntimeError(f"{signal_date} 过滤后没有可交易股票")
+        hint = ""
+        if factor_dir is not None:
+            hint = f"；请确认合成分已落到 {factor_dir}/{signal_date}.*"
+        raise RuntimeError(f"{signal_date} 过滤后没有可交易股票{hint}")
 
     ranked = strategy.generate_signal(factor_df, top_n=len(factor_df))
     ranked = [c for c in ranked if is_board_allowed(c)]
@@ -182,7 +220,7 @@ def run_live(args) -> pd.DataFrame:
     if not selected:
         raise RuntimeError("按当前资金/板块限制，没有买得起一手的股票")
 
-    previous = load_previous_holdings()
+    previous = load_previous_holdings(live_dir)
     table = build_order_table(
         selected=selected,
         previous=previous,
@@ -193,10 +231,9 @@ def run_live(args) -> pd.DataFrame:
         exec_date=exec_date,
     )
 
-    LIVE_DIR.mkdir(parents=True, exist_ok=True)
-    out_csv = LIVE_DIR / f"{signal_date}_orders.csv"
+    out_csv = live_base / f"{signal_date}_orders.csv"
     table.to_csv(out_csv, index=False, encoding="utf-8-sig")
-    save_holdings(signal_date, selected, args.capital)
+    save_holdings(signal_date, selected, args.capital, live_dir=live_dir)
 
     # 同步导出 PTrade 可粘贴策略（云端一般读不到本机 CSV）
     from src.live.ptrade_export import export_ptrade_files
@@ -206,8 +243,13 @@ def run_live(args) -> pd.DataFrame:
         codes=selected,
         signal_date=signal_date,
         code_style=getattr(args, "ptrade_code_style", "ss_sz"),
+        live_dir=live_base,
     )
-    qmt_paths = export_qmt_files(codes=selected, signal_date=signal_date)
+    qmt_paths = export_qmt_files(
+        codes=selected,
+        signal_date=signal_date,
+        live_dir=live_base,
+    )
 
     print(f"信号日: {signal_date}")
     print(f"执行日: {exec_date}")

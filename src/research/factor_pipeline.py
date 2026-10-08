@@ -39,6 +39,10 @@ from src.research.factor_active_state import (
     summarize_active_share,
 )
 from src.research.multifactor_weights import build_composites, compute_factor_metrics
+from src.research.smooth_universe import (
+    apply_smooth_replace_to_daily_weights,
+    resolve_smooth_replace,
+)
 from src.strategy.factor_calculator import FactorCalculator
 
 
@@ -241,6 +245,7 @@ def run_factor_pipeline(
     use_rolling_weights: bool = False,
     rolling_lookback: int = 60,
     rolling_min_history: int = 20,
+    composite_name: str = "composite",
 ) -> Dict[str, pd.DataFrame]:
     """
     跑通课上因子研究主流程，结果写入 factors/ 和 outputs/factor_research/。
@@ -251,11 +256,16 @@ def run_factor_pipeline(
     - 成员默认来自 factors/composite_universe.json（冻结，不每日重排）；
     - 权重默认整段 IC_IR；可选 --rolling-weights 改为滚动 IC_IR；
     - 分族估权 / 活跃态门控仍默认关闭。
+    - composite_name 决定落盘子目录（主链路 composite；短窗轨可用 composite_st）。
     """
     data_path = Path(data_dir)
     root = Path(factor_root)
+    composite_name = str(composite_name or "composite").strip() or "composite"
+    if "/" in composite_name or "\\" in composite_name or ".." in composite_name:
+        raise ValueError(f"非法 composite_name: {composite_name}")
     for name in FACTOR_DIRS.values():
         (root / name).mkdir(parents=True, exist_ok=True)
+    (root / composite_name).mkdir(parents=True, exist_ok=True)
 
     library = FactorLibrary(root / "registry.json")
     library.ensure_defaults()
@@ -472,9 +482,10 @@ def run_factor_pipeline(
         daily_weights.to_csv(out / "composite_daily_weights.csv")
 
     composites = build_composites(panel, use_cols, weights_by_method)
+    composite_dir = root / composite_name
     written = _write_composites(
         score_dir,
-        root / "composite",
+        composite_dir,
         dates,
         use_cols,
         chosen,
@@ -495,7 +506,8 @@ def run_factor_pipeline(
     print(f"打分目录: {score_dir}")
     print(f"注册表: {library.path}")
     print(
-        f"合成因子: {root / 'composite'}，共 {len(written)} 天，"
+        f"合成因子: {composite_dir}，共 {len(written)} 天，"
+        weights_by_method["smooth_replace"] = chosen
         f"加权={chosen_name}"
         + (" +活跃态" if use_active_state else "")
     )
