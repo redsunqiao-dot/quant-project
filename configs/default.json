@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "paths": {
+    "data_dir": "./data",
+    "factor_root": "./factors",
+    "composite_universe": "factors/composite_universe.json",
+    "outputs_dir": "./outputs",
+    "log_dir": "./outputs/logs",
+    "live_dir": "./outputs/live",
+    "paper_dir": "./outputs/paper"
+  },
+  "pipeline": {
+    "lookback_days": 240,
+    "weight_method": "ic_ir",
+    "use_family_weights": false,
+    "use_active_state": false,
+    "active_window": 20,
+    "active_min_ir": 0.10,
+    "use_rolling_weights": false,
+    "rolling_lookback": 60,
+    "rolling_min_history": 20
+  },
+  "backtest": {
+    "strategy": "composite",
+    "top_n": 4,
+    "capital": 50000.0,
+    "rebalance": 5,
+    "period": 20,
+    "commission_rate": 0.00012,
+    "slippage_rate": 0.001,
+    "stamp_duty": 0.0005,
+    "transfer_fee_rate": 0.00001,
+    "risk_free_rate": 0.03
+  },
+  "live": {
+    "strategy": "composite",
+    "top_n": 4,
+    "capital": 50000.0,
+    "lot_size": 100
+  },
+  "paper": {
+    "run_pipeline": false,
+    "run_live": true,
+    "pipeline_lookback_days": 60,
+    "note": "主模拟盘默认不再重跑管线，避免 lookback=60 覆盖 factors/composite；短窗请用 configs/paper_st.json"
+  },
+  "logging": {
+    "level": "INFO",
+    "console": true,
+    "file": true,
+    "format": "%(asctime)s | %(levelname)-7s | %(name)s | %(message)s",
+    "datefmt": "%Y-%m-%d %H:%M:%S"
+  }
+}
