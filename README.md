@@ -62,6 +62,12 @@ python update_valuation_data.py
 
 详见 `data/README.md`。
 
+## 配置与日志
+
+- 版本化默认配置：`configs/default.json`（路径、管线、回测成本、live、模拟盘、日志）
+- 覆盖方式：`--config path` 或环境变量 `QUANT_CONFIG`
+- 日志：`outputs/logs/{task}_YYYYMMDD.log`（`src.common.logging_setup`）
+
 ## 常用命令
 
 ```bash
@@ -76,21 +82,25 @@ python main.py --backtest --strategy multifactor
 
 # 收盘清单（默认 composite，实盘资金/持仓数见 CLI）
 python main.py --live
+
+# 模拟盘流水线：主轨 / 短窗轨（不自动下单）
+python scripts/run_paper_pipeline.py --skip-pipeline
+python scripts/run_paper_st_pipeline.py --skip-pipeline
 ```
 
-可选：`--weight ic_ir`、`--rolling-weights`、`--start` / `--end`、`--top-n`、`--rebalance`。
+可选：`--weight ic_ir`、`--rolling-weights`、`--max-per-industry`、`--max-weight`、`--start` / `--end`。
 
 ## 入库约定
 
 | 入库 | 不入库 |
 |------|--------|
-| `src/`、根目录入口脚本、`scripts/` | `data/**` 行情与缓存 |
-| `factors/registry.json`、`composite_universe.json`、`research_cards/` | `factors/{raw,filtered,...}/` parquet |
-| `pyproject.toml`、`uv.lock`、`requirements.txt` | `outputs/**`、`.venv/`、`.env` |
-| `.cursor/rules/` | 实盘持仓/订单 JSON |
+| `src/`、根目录入口脚本、`scripts/`、`configs/` | `data/**` 行情与缓存 |
+| `factors/registry.json`、`composite_universe*.json`、`research_cards/` | `factors/{raw,filtered,composite,composite_st,...}/` parquet |
+| `pyproject.toml`、`uv.lock`、`requirements.txt`、`tests/` | `outputs/**`、`.venv/`、`.env` |
+| `.cursor/rules/`、`LICENSE` | 实盘持仓/订单 JSON |
 
 克隆后按「数据准备」恢复本地数据，再跑 `--pipeline` 生成因子层。
 
 ## 许可
 
-仅供学习与研究；实盘自负风险。行情与第三方数据源请遵守其服务条款。
+MIT License（见 `LICENSE`）。仅供学习与研究；实盘自负风险。行情与第三方数据源请遵守其服务条款。

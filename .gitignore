@@ -42,14 +42,28 @@ factors/preprocessed/
 factors/neutralized/
 factors/industry_neutralized/
 factors/composite/
+factors/composite_st/
+factors/composite_st_*/
+factors/composite_st__*/
+factors/cutting_track/
 factors/_tmp_*/
 factors/research_reports/*
 !factors/research_reports/.gitkeep
 
 # 运行产物与实验输出
 outputs/**
+!outputs/
 !outputs/.gitkeep
+!outputs/live/
 !outputs/live/.gitkeep
+!outputs/live_st/
+!outputs/live_st/.gitkeep
+!outputs/logs/
+!outputs/logs/.gitkeep
+!outputs/paper/
+!outputs/paper/.gitkeep
+!outputs/paper_st/
+!outputs/paper_st/.gitkeep
 
 # 日志（若落在仓库根）
 *.log
