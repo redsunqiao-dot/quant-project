@@ -39,6 +39,8 @@ pip install -r requirements.txt
 
 依赖以 `pyproject.toml` / `uv.lock` 为准；`requirements.txt` 为兼容导出。
 
+**在另一台 Windows 上部署**（装环境、拷数据、拉数、日更、作战台）：见 **[docs/DEPLOY_WINDOWS.md](docs/DEPLOY_WINDOWS.md)**。
+
 ## 数据准备
 
 `data/` 与因子 parquet **不进 Git**（体积约数 GB）。本地需具备：
@@ -58,9 +60,13 @@ python update_market_data.py
 python update_industry_data.py
 python update_fundamental_data.py
 python update_valuation_data.py
+
+# baostock 备源：Tushare 行情 / 估值增量（需 TUSHARE_TOKEN）
+python update_market_data_tushare.py
+python update_valuation_data_tushare.py
 ```
 
-详见 `data/README.md`。
+详见 `data/README.md`；Tushare 全量方案见 `data/TUSHARE.md`。
 
 ## 配置与日志
 

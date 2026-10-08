@@ -33,6 +33,7 @@ Thumbs.db
 # 行情 / 财务 / 估值 / 行业等
 data/**
 !data/README.md
+!data/TUSHARE.md
 !data/.gitkeep
 
 # 因子中间层与合成分 parquet（可重算）

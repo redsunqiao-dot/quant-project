@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-本机作战台：日更 / 回测 / 因子体检 / 出图。
+本机作战台：日更 / 回测 / 因子体检 / 出图 / 数据补数按钮。
 
 启动:
+  export TUSHARE_TOKEN=...   # 补行情/估值按钮需要
   .venv/bin/python scripts/ops_desk/server.py
   浏览器 http://127.0.0.1:8765
 """
@@ -11,12 +12,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlparse
+from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -42,6 +44,34 @@ _SIGNAL_STATE = {
     "message": "",
     "ok": None,
 }
+_DATA_LOCK = threading.Lock()
+_DATA_STATE = {
+    "running": False,
+    "job": "",
+    "message": "",
+    "ok": None,
+    "log_tail": "",
+}
+
+# 页面按钮允许的拉数任务（白名单，防任意命令注入）
+_DATA_JOBS = {
+    "market_tushare": {
+        "label": "Tushare 补行情",
+        "script": ROOT / "update_market_data_tushare.py",
+        "need_token": True,
+    },
+    "valuation_tushare": {
+        "label": "Tushare 补估值",
+        "script": ROOT / "update_valuation_data_tushare.py",
+        "need_token": True,
+    },
+}
+
+
+def _has_tushare_token() -> bool:
+    return bool(
+        (os.environ.get("TUSHARE_TOKEN") or os.environ.get("TS_TOKEN") or "").strip()
+    )
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -86,6 +116,15 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path == "/api/signal/status":
             self._send_json(dict(_SIGNAL_STATE))
+            return
+        if path == "/api/data/status":
+            st = dict(_DATA_STATE)
+            st["tushare_token"] = _has_tushare_token()
+            st["jobs"] = {
+                k: {"label": v["label"], "need_token": v["need_token"]}
+                for k, v in _DATA_JOBS.items()
+            }
+            self._send_json(st)
             return
         if path == "/api/backtest":
             self._send_json(load_backtest_snapshot())
@@ -138,6 +177,9 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path == "/api/signal/refresh":
             self._start_signal_refresh(body)
+            return
+        if path == "/api/data/refresh":
+            self._start_data_refresh(body)
             return
         if path == "/api/viz/run":
             self._run_viz(body)
@@ -287,6 +329,95 @@ class Handler(BaseHTTPRequestHandler):
                 "message": f"已开始刷新信号（{track}{' 含管线' if run_pipeline else ''}）",
             }
         )
+
+    def _start_data_refresh(self, body: dict) -> None:
+        """页面触发 Tushare 行情/估值增量（同时间只跑一个）。"""
+        job = str(body.get("job") or "").strip()
+        meta = _DATA_JOBS.get(job)
+        if meta is None:
+            self._send_json(
+                {
+                    "ok": False,
+                    "message": f"未知任务: {job}，可选: {', '.join(_DATA_JOBS)}",
+                },
+                400,
+            )
+            return
+        if meta["need_token"] and not _has_tushare_token():
+            self._send_json(
+                {
+                    "ok": False,
+                    "message": "未设置 TUSHARE_TOKEN / TS_TOKEN，请先在启动 shell 里 export",
+                },
+                400,
+            )
+            return
+        script = Path(meta["script"])
+        if not script.is_file():
+            self._send_json({"ok": False, "message": f"脚本不存在: {script}"}, 404)
+            return
+
+        with _DATA_LOCK:
+            if _DATA_STATE["running"]:
+                self._send_json(
+                    {
+                        "ok": False,
+                        "message": f"数据任务进行中: {_DATA_STATE['job']}",
+                    },
+                    409,
+                )
+                return
+            _DATA_STATE.update(
+                {
+                    "running": True,
+                    "job": job,
+                    "message": f"正在{meta['label']}…",
+                    "ok": None,
+                    "log_tail": "",
+                }
+            )
+
+        def worker() -> None:
+            cmd = [sys.executable, str(script)]
+            # 可选透传起止日（页面暂不填则走脚本默认增量）
+            if body.get("start"):
+                cmd += ["--start", str(body["start"])]
+            if body.get("end"):
+                cmd += ["--end", str(body["end"])]
+            if body.get("overwrite"):
+                cmd.append("--overwrite")
+            try:
+                proc = subprocess.run(
+                    cmd,
+                    cwd=str(ROOT),
+                    capture_output=True,
+                    text=True,
+                    env=os.environ.copy(),
+                )
+                out = ((proc.stdout or "") + "\n" + (proc.stderr or "")).strip()
+                tail = out[-800:] if out else ""
+                if proc.returncode == 0:
+                    # 取最后一行作摘要
+                    last_line = (out.splitlines() or [f"{meta['label']}完成"])[-1]
+                    msg, ok = last_line[:200], True
+                else:
+                    msg = (tail or f"{meta['label']}失败")[-400:]
+                    ok = False
+            except Exception as exc:
+                msg, ok, tail = str(exc), False, ""
+            with _DATA_LOCK:
+                _DATA_STATE.update(
+                    {
+                        "running": False,
+                        "job": job,
+                        "message": msg,
+                        "ok": ok,
+                        "log_tail": tail,
+                    }
+                )
+
+        threading.Thread(target=worker, daemon=True).start()
+        self._send_json({"ok": True, "message": f"已开始{meta['label']}"})
 
     def _run_viz(self, body: dict) -> None:
         script_id = str(body.get("id") or "")

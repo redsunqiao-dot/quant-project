@@ -28,4 +28,13 @@ python update_fundamental_data.py   # baostock 限流时 workers=1
 python update_valuation_data.py
 ```
 
+baostock 不可用时，可用 **Tushare 备源**（需 `TUSHARE_TOKEN`）：
+
+```bash
+python update_market_data_tushare.py
+python update_valuation_data_tushare.py
+```
+
+完整接口映射、行业/财务扩展顺序见同目录 **[TUSHARE.md](./TUSHARE.md)**。
+
 具体参数以各脚本内说明为准。财务/估值若遇数据源黑名单，应暂停续拉，勿加大并发。

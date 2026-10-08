@@ -3,6 +3,7 @@
   let activeTab = "ops";
   let pollTimer = null;
   let signalPollTimer = null;
+  let dataPollTimer = null;
 
   function esc(s) {
     return String(s ?? "")
@@ -81,9 +82,10 @@
     `;
   }
 
-  function renderOps(snap, signalStatus) {
+  function renderOps(snap, signalStatus, dataStatus) {
     const data = snap.data || {};
     const st = signalStatus || {};
+    const ds = dataStatus || {};
     const pills = [
       { k: "日线 data_daily", v: data.daily_last || "无", ok: data.daily_ok },
       { k: "状态 data_ud_new", v: data.ud_last || "无", ok: data.ud_ok },
@@ -100,6 +102,8 @@
       )
       .join("");
     const busy = !!st.running;
+    const dataBusy = !!ds.running;
+    const tokenOk = !!ds.tushare_token;
     const sigBtns = [
       ["btnSigMain", "刷新主轨信号"],
       ["btnSigSt", "刷新短线信号"],
@@ -112,7 +116,15 @@
           `<button type="button" class="${id.startsWith("btnPipe") ? "" : "primary"}" id="${id}" ${busy ? "disabled" : ""}>${label}</button>`
       )
       .join("");
+    const dataHint = !tokenOk
+      ? "未检测到 TUSHARE_TOKEN（启动 server 的 shell 里 export 后再开）"
+      : ds.message || "增量补数：对齐本地末日之后的交易日；同时间只跑一个任务";
     return `
+      <div class="toolbar">
+        <button type="button" class="primary" id="btnDataMarket" ${dataBusy || !tokenOk ? "disabled" : ""}>Tushare 补行情</button>
+        <button type="button" class="primary" id="btnDataVal" ${dataBusy || !tokenOk ? "disabled" : ""}>Tushare 补估值</button>
+        <span class="hint" id="dataStatus">${esc(dataHint)}</span>
+      </div>
       <div class="toolbar">
         ${sigBtns}
         <span class="hint" id="sigStatus">${esc(
@@ -353,6 +365,20 @@
     }, 2000);
   }
 
+  function pollDataJob() {
+    if (dataPollTimer) clearInterval(dataPollTimer);
+    dataPollTimer = setInterval(async () => {
+      const st = await fetchJson("/api/data/status");
+      const el = document.getElementById("dataStatus");
+      if (el) el.textContent = st.message || "";
+      if (!st.running) {
+        clearInterval(dataPollTimer);
+        dataPollTimer = null;
+        if (activeTab === "ops") loadTab("ops");
+      }
+    }, 2000);
+  }
+
   async function startSignalRefresh(track, runPipeline) {
     const el = document.getElementById("sigStatus");
     if (el) el.textContent = runPipeline
@@ -370,15 +396,45 @@
     pollSignal();
   }
 
+  async function startDataRefresh(job) {
+    const el = document.getElementById("dataStatus");
+    if (el) el.textContent = "任务提交中…";
+    ["btnDataMarket", "btnDataVal"].forEach((id) => {
+      const b = document.getElementById(id);
+      if (b) b.disabled = true;
+    });
+    const r = await fetchJson("/api/data/refresh", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ job }),
+    });
+    if (el) el.textContent = r.message || "";
+    if (r.ok === false) {
+      ["btnDataMarket", "btnDataVal"].forEach((id) => {
+        const b = document.getElementById(id);
+        if (b) b.disabled = false;
+      });
+      return;
+    }
+    pollDataJob();
+  }
+
   async function loadTab(tab) {
     const gen = document.getElementById("generated");
     if (tab === "ops") {
-      const [snap, st] = await Promise.all([
+      const [snap, st, ds] = await Promise.all([
         fetchJson("/api/ops"),
         fetchJson("/api/signal/status"),
+        fetchJson("/api/data/status"),
       ]);
       gen.textContent = `更新 ${snap.generated_at}`;
-      document.getElementById("panel-ops").innerHTML = renderOps(snap, st);
+      document.getElementById("panel-ops").innerHTML = renderOps(snap, st, ds);
+      document.getElementById("btnDataMarket")?.addEventListener("click", () =>
+        startDataRefresh("market_tushare")
+      );
+      document.getElementById("btnDataVal")?.addEventListener("click", () =>
+        startDataRefresh("valuation_tushare")
+      );
       document.getElementById("btnSigMain")?.addEventListener("click", () =>
         startSignalRefresh("main", false)
       );
@@ -395,6 +451,7 @@
         startSignalRefresh("st", true)
       );
       if (st.running) pollSignal();
+      if (ds.running) pollDataJob();
       return;
     }
     if (tab === "backtest") {
