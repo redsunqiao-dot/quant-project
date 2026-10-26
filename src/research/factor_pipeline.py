@@ -478,6 +478,41 @@ def run_factor_pipeline(
         )
         active_share.to_csv(out / "factor_active_share.csv", header=["active_share"])
 
+    # 平滑换因子：名单变更时在 horizon 日内从旧名单过渡到新名单
+    smooth_cfg = None
+    if composite_universe_path and universe_meta:
+        smooth_cfg = resolve_smooth_replace(universe_meta, composite_universe_path)
+    if smooth_cfg is not None:
+        prev_factors = [c for c in smooth_cfg["prev_factors"] if c in factor_cols]
+        union_cols = list(dict.fromkeys(list(prev_factors) + list(use_cols)))
+        if prev_factors:
+            prev_metrics = metrics.reindex(prev_factors).fillna(0.0)
+            if chosen_name.startswith("rolling") or "ic_ir" in chosen_name:
+                w_prev = normalize_weights(prev_metrics["ic_ir"])
+            else:
+                w_prev = normalize_weights(pd.Series(1.0, index=prev_factors))
+        else:
+            w_prev = pd.Series(dtype=float)
+        w_new = chosen.reindex(union_cols).fillna(0.0)
+        w_prev = w_prev.reindex(union_cols).fillna(0.0)
+        use_cols = union_cols
+        daily_weights = apply_smooth_replace_to_daily_weights(
+            daily_weights=daily_weights,
+            dates=dates,
+            w_new_static=w_new,
+            w_prev_static=w_prev,
+            start_date=smooth_cfg["start_date"],
+            horizon_days=smooth_cfg["horizon_days"],
+        )
+        chosen = daily_weights.iloc[-1]
+        chosen_name = f"{chosen_name}+smooth_replace({smooth_cfg['horizon_days']}d)"
+        weights_by_method["smooth_replace"] = chosen
+        print(
+            f"平滑换因子: prev={smooth_cfg['prev_path'].name} → 当前名单，"
+            f"start={smooth_cfg['start_date']}，horizon={smooth_cfg['horizon_days']} 日；"
+            f"联合因子数={len(use_cols)}"
+        )
+
     if daily_weights is not None:
         daily_weights.to_csv(out / "composite_daily_weights.csv")
 
@@ -507,7 +542,6 @@ def run_factor_pipeline(
     print(f"注册表: {library.path}")
     print(
         f"合成因子: {composite_dir}，共 {len(written)} 天，"
-        weights_by_method["smooth_replace"] = chosen
         f"加权={chosen_name}"
         + (" +活跃态" if use_active_state else "")
     )

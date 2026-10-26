@@ -73,6 +73,18 @@ def to_project_code(symbol: str) -> Optional[str]:
     return f"{num}.XSHE"
 
 
+def load_st_codes(codes: Sequence[str]) -> set:
+    """用新浪简称识别 ST。东财/腾讯历史 K 没有简称，写入前先拉名单。"""
+    spot = fetch_spot_sina(list(codes))
+    if spot.empty or "is_st" not in spot.columns or "code" not in spot.columns:
+        raise RuntimeError("新浪简称拉取失败，拒绝把 ST 写成 0")
+    st_codes = set(spot.loc[spot["is_st"].astype(bool), "code"].astype(str))
+    if not st_codes:
+        raise RuntimeError("新浪简称未识别到 ST，拒绝写入")
+    print(f"ST 名单 {len(st_codes)} 只")
+    return st_codes
+
+
 def load_universe_codes(data_dir: Path, anchor_date: str) -> List[str]:
     daily = pd.read_csv(data_dir / "data_daily" / f"{anchor_date}.csv")
     return sorted(daily["code"].astype(str).unique().tolist())
@@ -322,6 +334,7 @@ def fill_dates_em(
     )
     end = max(dates)
     date_set = set(dates)
+    st_codes = load_st_codes(codes)
     daily_rows: List[dict] = []
     ud_rows: List[dict] = []
     errors = 0
@@ -357,7 +370,7 @@ def fill_dates_em(
                 pre_close=pre,
                 amount=float(r["amount"]) if pd.notna(r["amount"]) else 0.0,
                 turn=float(r["turn"]) if pd.notna(r["turn"]) else 0.0,
-                is_st=False,
+                is_st=code in st_codes,
                 anchor_hfq_close=float(hfq_map[code]),
                 anchor_raw_close=anchor_raw,
             )
@@ -585,6 +598,7 @@ def fill_dates_tx(
     spot_date, turn_spot = fetch_tx_spot_turns(codes)
     end = max(dates)
     date_set = set(dates)
+    st_codes = load_st_codes(codes)
     daily_rows: List[dict] = []
     ud_rows: List[dict] = []
     errors = 0
@@ -640,7 +654,7 @@ def fill_dates_tx(
                 pre_close=pre,
                 amount=float(r["amount"]) if pd.notna(r["amount"]) else 0.0,
                 turn=turn,
-                is_st=False,
+                is_st=code in st_codes,
                 anchor_hfq_close=float(hfq_map[code]),
                 anchor_raw_close=anchor_raw,
             )
@@ -841,6 +855,7 @@ def fill_dates_hist(
     )
     end = max(dates)
     fetch_start = anchor_date
+    st_codes = load_st_codes(codes)
     daily_rows: List[dict] = []
     ud_rows: List[dict] = []
     date_set = set(dates)
@@ -876,7 +891,7 @@ def fill_dates_hist(
                     pre_close=pre,
                     amount=float(r["amount"]) if pd.notna(r["amount"]) else 0.0,
                     turn=float(r["turn"]) if pd.notna(r["turn"]) else 0.0,
-                    is_st=False,
+                    is_st=code in st_codes,
                     anchor_hfq_close=float(hfq_map[code]),
                     anchor_raw_close=anchor_raw,
                 )

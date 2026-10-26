@@ -107,11 +107,32 @@ def fetch_day_panels(pro, trade_date: str) -> Tuple[pd.DataFrame, pd.DataFrame, 
     return daily, basic, limit if limit is not None else pd.DataFrame()
 
 
+def load_listed_st_codes(pro) -> set:
+    """在市股票里，简称含 ST 的代码。拉不到名单就中止，避免整日写成非 ST。"""
+    sb = pro.stock_basic(exchange="", list_status="L", fields="ts_code,name")
+    time.sleep(0.35)
+    if sb is None or sb.empty or "name" not in sb.columns:
+        raise RuntimeError("stock_basic 为空，无法标记 ST")
+    codes = set()
+    for _, row in sb.iterrows():
+        name = str(row.get("name", ""))
+        if "ST" not in name.upper():
+            continue
+        code = from_ts_code(row["ts_code"])
+        if code:
+            codes.add(code)
+    if not codes:
+        raise RuntimeError("stock_basic 未识别到 ST，拒绝写入")
+    print(f"ST 名单 {len(codes)} 只")
+    return codes
+
+
 def fill_one_day_tushare(
     pro,
     data_dir: Path,
     date: str,
     anchor_date: str,
+    st_codes: set,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Tushare 单日 → data_daily / data_ud_new。"""
     daily_anchor = pd.read_csv(data_dir / "data_daily" / f"{anchor_date}.csv")
@@ -143,21 +164,6 @@ def fill_one_day_tushare(
         if up_col and down_col:
             for _, r in limit.dropna(subset=["code"]).iterrows():
                 limit_map[str(r["code"])] = (float(r[up_col]), float(r[down_col]))
-
-    # ST：用 stock_basic 名称（缓存一次）
-    st_codes = set()
-    try:
-        sb = pro.stock_basic(exchange="", list_status="L", fields="ts_code,name")
-        time.sleep(0.35)
-        if sb is not None and not sb.empty:
-            for _, r in sb.iterrows():
-                name = str(r.get("name", ""))
-                if "ST" in name.upper():
-                    code = from_ts_code(r["ts_code"])
-                    if code:
-                        st_codes.add(code)
-    except Exception as exc:
-        print(f"stock_basic 拉 ST 失败，跳过 ST 标记: {exc}")
 
     daily_rows = []
     ud_rows = []
@@ -249,6 +255,7 @@ def main() -> int:
         return 0
 
     print(f"Tushare 待补 {dates[0]} ~ {dates[-1]}，共 {len(dates)} 天；锚定用各日前一本地日")
+    st_codes = load_listed_st_codes(pro)
     for date in dates:
         anchors = [
             d
@@ -260,7 +267,7 @@ def main() -> int:
             continue
         anchor = anchors[-1]
         print(f"补 {date}，锚定 {anchor}")
-        daily, ud = fill_one_day_tushare(pro, data_dir, date, anchor)
+        daily, ud = fill_one_day_tushare(pro, data_dir, date, anchor, st_codes)
         if daily.empty:
             print(f"{date} 无数据")
             continue
