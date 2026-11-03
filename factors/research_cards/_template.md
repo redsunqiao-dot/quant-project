@@ -1,5 +1,11 @@
 # 研报因子卡模板（模块 1 十项清单 ≥8 再 register candidate）
 
+目录约定见同目录 `README.md`。完整填法样板：`ubl.md`。  
+批次扫库放 `batch/`，跳过备忘放 `skip/`。
+
+目录约定见同级 `README.md`。完整填法样板：`ubl.md`。  
+跳过备忘放 `skip/`；批次/扫库汇总放 `batch/`。
+
 ## 基本信息
 - name:
 - 来源（券商/标题/日期）:
