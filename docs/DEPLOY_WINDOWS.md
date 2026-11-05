@@ -214,6 +214,9 @@ $env:TUSHARE_TOKEN = "你的token"   # 若未 setx
 python update_market_data_tushare.py
 python update_valuation_data_tushare.py
 
+# 1b) 日更前质检（日历与 daily/ud/ret 齐套；失败 exit 1）
+python scripts\check_data_freshness.py
+
 # 2) 需要更新合成分时再跑（仅信号可跳过）
 python main.py --pipeline
 

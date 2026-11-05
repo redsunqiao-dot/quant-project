@@ -11,7 +11,7 @@ import argparse
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
-from typing import List, Optional, Sequence
+from typing import List, Sequence
 
 import baostock as bs
 import pandas as pd

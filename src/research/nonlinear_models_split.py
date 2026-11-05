@@ -240,8 +240,9 @@ def run(
 
     # 转换为 NumPy 数组 (加速训练)
     x_train, y_train = train[factor_cols].values, train["ret"].values
-    x_val, y_val = val[factor_cols].values, val["ret"].values
-    x_test, y_test = test[factor_cols].values, test["ret"].values
+    x_val, _y_val = val[factor_cols].values, val["ret"].values
+    # 测试集特征在本段仅用于后续扩展；当前主流程用 val 做 SHAP
+    _x_test, _y_test = test[factor_cols].values, test["ret"].values
 
     if train.empty:
         raise ValueError("Training data is empty after filtering.")
@@ -272,7 +273,7 @@ def run(
             "model": model_name
         }).sort_values("importance", ascending=False)
 
-        print(f"   Top 5 重要特征 (Based on Split Gain):")
+        print("   Top 5 重要特征 (Based on Split Gain):")
         for idx, row in feature_importance_df.head(5).iterrows():
             print(f"      {row['factor']}: {row['importance']:.4f}")
     except AttributeError:
@@ -301,7 +302,7 @@ def run(
                 "model": model_name
             }).sort_values("mean_abs_shap", ascending=False)
 
-            print(f"   Top 5 SHAP 特征:")
+            print("   Top 5 SHAP 特征:")
             for idx, row in shap_summary_df.head(5).iterrows():
                 print(f"      {row['factor']}: {row['mean_abs_shap']:.4f}")
         else:
@@ -343,7 +344,7 @@ def run(
     if rolling_results is not None:
         rolling_results.to_csv(out / "rolling_window_results.csv", index=False)
 
-    print(f"\n✓ 非线性模型分析完成!")
+    print("\n✓ 非线性模型分析完成!")
     print(f"  模型: {model_name}")
     print(f"  结果已保存至: {out}")
     print("=" * 80)

@@ -367,7 +367,7 @@ if __name__ == '__main__':
 
         print(f"\n📊 {test_date} 的动量因子（前 5 只股票）:")
         print(factor_df.head())
-        print(f"\n因子统计:")
+        print("\n因子统计:")
         factor_col = calculator.momentum_col(20)
         print(factor_df[factor_col].describe())
 

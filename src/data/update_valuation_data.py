@@ -12,7 +12,7 @@ import argparse
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
-from typing import List, Optional, Sequence
+from typing import List, Sequence
 
 import baostock as bs
 import pandas as pd
@@ -20,7 +20,6 @@ import pandas as pd
 from src.data.update_market_data import (
     cache_file,
     ensure_login,
-    is_ashare_code,
     last_csv_date,
     load_stock_table,
     load_trade_dates,

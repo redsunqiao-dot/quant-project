@@ -127,7 +127,6 @@ def calculate_backtest_return(panel: pd.DataFrame, factor_cols: List[str], weigh
     Returns:
         包含累计收益、年化收益、夏普比率、最大回撤的字典。
     """
-    import numpy as np
 
     aligned = weights.reindex(factor_cols).fillna(0.0)
     tmp = panel.copy()
@@ -358,7 +357,7 @@ def run(
 
     # 计算稳定性指标
     turnover = weight_turnover(weights_df)           # 原始权重换手率
-    smoothed = ewma_smooth(weights_df, alpha=0.3)    # (可选) 计算平滑后的权重供参考
+    _smoothed = ewma_smooth(weights_df, alpha=0.3)  # 可选平滑权重，供对照扩展
 
     # 打印诊断报告
     print("\n" + "=" * 80)
@@ -367,13 +366,13 @@ def run(
 
     signals = detect_overfitting_signals(overfit_df, turnover)
     
-    print(f"\n[1] 核心指标汇总 (Key Metrics):")
+    print("\n[1] 核心指标汇总 (Key Metrics):")
     print(f"    - 平均 IS IC (Train):  {signals['details']['train_ic_mean']:.4f}")
     print(f"    - 平均 OOS IC (Test):  {signals['details']['test_ic_mean']:.4f}")
     print(f"    - IC 差异 (Gap):       {signals['details']['ic_gap']:.4f}")
     print(f"    - 平均权重换手率 (Turnover): {signals['details'].get('avg_turnover', 0):.2%}")
 
-    print(f"\n[2] 过拟合风险判定 (Risk Assessment):")
+    print("\n[2] 过拟合风险判定 (Risk Assessment):")
     if signals["has_overfitting"]:
         print("    状态: ❌ 检测到高风险 (High Risk)。建议简化模型或重新筛选因子。")
         for w in signals["warnings"]:

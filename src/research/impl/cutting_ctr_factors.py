@@ -22,7 +22,6 @@ def _masked_mean(
     window: int,
 ) -> pd.DataFrame:
     """滚动窗内仅在 mask 为 True 的交易日上求收益均值。"""
-    w = float(window)
     min_count = max(window // 2, 5)
     m = mask.astype(float)
     num = (ret * m).rolling(window, min_periods=min_count).sum()

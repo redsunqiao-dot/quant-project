@@ -96,6 +96,12 @@ python scripts/run_paper_st_pipeline.py --skip-pipeline
 
 可选：`--weight ic_ir`、`--rolling-weights`、`--max-per-industry`、`--max-weight`、`--start` / `--end`。
 
+日更前数据齐套检查：
+
+```bash
+python scripts/check_data_freshness.py
+```
+
 ## 入库约定
 
 | 入库 | 不入库 |

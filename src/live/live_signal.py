@@ -10,7 +10,6 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.common.holding_constraints import apply_industry_cap, load_industry_map
 from src.data.data_loader import DataLoader
 from src.data.tradeable_filter import keep_tradeable, is_board_allowed
 

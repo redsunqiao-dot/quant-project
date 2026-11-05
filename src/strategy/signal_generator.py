@@ -3,7 +3,6 @@
 对应教案 Day 7 Version 4.0
 """
 
-import pandas as pd
 from src.data.data_loader import DataLoader
 from src.strategy.factor_calculator import FactorCalculator
 
@@ -115,7 +114,7 @@ if __name__ == '__main__':
         factor_df_show = calculator.load_factor(test_date)
         if not factor_df_show.empty:
             factor_df_show = factor_df_show.set_index('code')
-            print(f"\n因子值排名（Top 5）:")
+            print("\n因子值排名（Top 5）:")
             for stock in selected_stocks[:5]:
                 if stock in factor_df_show.index and factor_col in factor_df_show.columns:
                     print(f"{stock:12s}  {factor_df_show.loc[stock, factor_col]:.4f}")

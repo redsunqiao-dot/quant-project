@@ -35,7 +35,6 @@ try:
         infer_factor_columns,
         industry_neutralize_by_date,
         load_real_panel,
-        zscore_by_date,
     )
 except ImportError:  # pragma: no cover
     from .utils import (  # type: ignore
@@ -44,7 +43,6 @@ except ImportError:  # pragma: no cover
         infer_factor_columns,
         industry_neutralize_by_date,
         load_real_panel,
-        zscore_by_date,
     )
 
 from src.backtest.backtest_engine_strategy import BacktestEngine

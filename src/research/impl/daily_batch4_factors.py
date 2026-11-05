@@ -51,7 +51,6 @@ def compute_ky_ideal_amp_panels(
     k = max(1, int(round(window * lam)))
 
     # 逐日滚动：用过去 window 日截面内按收盘价切高/低价态
-    dates = list(c.index)
     codes = list(c.columns)
     out = pd.DataFrame(index=c.index, columns=codes, dtype=float)
 

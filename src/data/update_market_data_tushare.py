@@ -21,7 +21,7 @@ import os
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Optional, Tuple
 
 import pandas as pd
 
@@ -37,6 +37,7 @@ from src.data.update_market_data import (
 from src.data.update_market_data_akshare import (
     build_rows_from_raw_day,
     need_dates,
+    to_project_code,
     to_symbol,
 )
 

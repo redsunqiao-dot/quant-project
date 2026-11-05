@@ -24,7 +24,7 @@ class DataLoader:
             if (self.data_dir / 'data_daily' / f'{date}.csv').exists():
                 self.trade_dates.append(date)
 
-        print(f"✅ 数据加载器初始化成功")
+        print("✅ 数据加载器初始化成功")
         print(f"📅 交易日数量: {len(self.trade_dates)}")
         if not self.trade_dates:
             print("⚠️ 未找到任何交易日数据，请检查 data_dir 是否正确")

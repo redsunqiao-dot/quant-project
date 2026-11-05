@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence
+from typing import Dict, Optional, Sequence
 
 import numpy as np
 import pandas as pd
@@ -19,7 +19,6 @@ from src.common.utils import (
     ensure_dir,
     group_returns,
     load_factor_series,
-    load_return_series,
 )
 from src.research.factor_library import FactorLibrary
 

@@ -25,9 +25,9 @@ jobs:
       - name: Import smoke (no data required)
         run: |
           python -c "import src; from src.common import utils; from src.common.config import load_config; print('ok')"
-      - name: Ruff (core modules)
+      - name: Ruff (src, F/E9; PTrade 云端 API 已 per-file-ignore F821)
         run: |
-          ruff check src/common/holding_constraints.py src/research/smooth_universe.py src/common/config.py src/common/logging_setup.py
+          ruff check src --select F,E9
       - name: Unit tests
         run: |
           pytest -q tests/

@@ -177,6 +177,28 @@ class BacktestEngine:
         report['trade_count'] = trade_stats['trade_count'] # 总交易次数
         report['avg_turnover'] = np.mean(turnover_list) if turnover_list else 0 # 平均换手率
 
+        # 6b. 扣费前/后 + 换手 + 末仓行业集中度
+        from src.backtest.risk_summary import build_cost_risk_block
+        from src.common.holding_constraints import load_industry_map
+
+        last_holdings = daily_metrics.get("last_holdings") or []
+        last_date = daily_metrics.get("last_holdings_date")
+        ind_map = {}
+        if last_holdings and last_date:
+            ind_map = load_industry_map(
+                last_date,
+                industry_dir=str(Path(self.loader.data_dir) / "data_industry"),
+            )
+        report["cost_risk"] = build_cost_risk_block(
+            net_returns=daily_returns_list,
+            gross_returns=daily_metrics.get("daily_returns_gross_list") or None,
+            avg_turnover=float(report["avg_turnover"]),
+            total_cost=float(report["total_cost"]),
+            last_holdings=last_holdings,
+            industry_by_code=ind_map,
+            risk_free_rate=self.evaluator.risk_free_rate,
+        )
+
         # 7. 分组回测数据
         if group_returns:
             report['group_returns'] = pd.DataFrame(group_returns)
@@ -233,8 +255,8 @@ class BacktestEngine:
             # 1) 盘后: 读取 T 日收益(代表 T->T+1 forward return)
             ret_df = self._get_today_returns(date)
 
-            # 2) 结算持仓收益(非日频再平衡)
-            portfolio_ret = self._calculate_portfolio_return(
+            # 2) 结算持仓收益(非日频再平衡)；同时记扣费前/后便于报告对照
+            gross_ret, portfolio_ret = self._calculate_portfolio_return(
                 ret_df=ret_df,
                 enable_cost=enable_cost,
                 is_rebalance_day=is_rebalance_day,
@@ -242,6 +264,10 @@ class BacktestEngine:
             )
             # 记录当日收益并更新账户资金
             self._record_daily_return(portfolio_ret, date, metrics)
+            metrics["daily_returns_gross_list"].append(gross_ret)
+            if self.portfolio.current_holdings:
+                metrics["last_holdings"] = list(self.portfolio.current_holdings)
+                metrics["last_holdings_date"] = date
             self.portfolio.update_capital(portfolio_ret)
 
             # 3) 盘后: 计算因子(用于 IC / 分组 / 下一交易日信号)
@@ -283,13 +309,16 @@ class BacktestEngine:
         # 统一管理回测过程中生成的日频序列
         return {
             'daily_returns_list': [],
+            'daily_returns_gross_list': [],
             'daily_returns_dates': [],
             'ic_list': [],
             'ic_dates': [],
             'turnover_list': [],
             'group_returns': [],
             'group_ls': [],
-            'group_ls_dates': []
+            'group_ls_dates': [],
+            'last_holdings': [],
+            'last_holdings_date': None,
         }
 
     def _calculate_factor(self, date: str, strategy: Strategy) -> pd.DataFrame:
@@ -385,20 +414,22 @@ class BacktestEngine:
         enable_cost: bool,
         is_rebalance_day: bool,
         rebalance_info: Optional[dict]
-    ) -> Optional[float]:
+    ) -> tuple:
+        """返回 (扣费前收益, 扣费后收益)。无持仓收益数据时两者均为 0。"""
         # 无收益数据时直接跳过
         if ret_df is None or ret_df.empty:
-            return 0.0
+            return 0.0, 0.0
 
         # 组合收益(考虑权重漂移)
         ret_series = ret_df['1vwap_pct']
-        portfolio_ret = self.portfolio.compute_portfolio_return(ret_series)
+        gross_ret = self.portfolio.compute_portfolio_return(ret_series)
+        portfolio_ret = gross_ret
         if enable_cost and is_rebalance_day and rebalance_info is not None:
             # 交易成本折算为资金占比,从当日收益中扣除
             cost_rate = rebalance_info['total_cost'] / self.portfolio.current_capital
             portfolio_ret -= cost_rate
 
-        return portfolio_ret
+        return float(gross_ret), float(portfolio_ret)
 
     def _record_daily_return(self, portfolio_ret: float, date: str, metrics: dict) -> None:
         # 记录日收益序列,用于后续净值和指标计算
@@ -506,13 +537,22 @@ class BacktestEngine:
             print(f"IR:             {report['ir']:>10.4f}")
             print(f"IC 胜率:        {report['ic_win_rate']*100:>10.2f}%")
 
-        # 交易统计
+        # 交易统计 + 扣费前后 / 行业集中度
         print("\n" + "-" * 60)
-        print("📊 交易统计")
+        print("📊 交易统计 / 成本与风险")
         print("-" * 60)
         print(f"总交易成本:     {report['total_cost']:>10.0f} 元")
         print(f"交易次数:       {report['trade_count']:>10.0f}")
         print(f"平均换手率:     {report['avg_turnover']*100:>10.2f}%")
+        cost_risk = report.get("cost_risk")
+        if isinstance(cost_risk, dict):
+            from src.backtest.risk_summary import format_cost_risk_lines
+
+            for line in format_cost_risk_lines(cost_risk):
+                # 换手/成本已在上方打印，此处跳过重复键
+                if line.startswith("平均换手") or line.startswith("累计交易成本"):
+                    continue
+                print(line)
 
         group_ls = report.get('group_ls_returns')
         if group_ls is not None and not group_ls.empty:

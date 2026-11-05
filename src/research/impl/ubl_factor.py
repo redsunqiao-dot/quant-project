@@ -12,7 +12,7 @@ UBL_raw = zscore(desize(蜡烛上_std)) + zscore(desize(威廉下_mean))
 
 from __future__ import annotations
 
-from typing import Optional, Tuple
+from typing import Tuple
 
 import numpy as np
 import pandas as pd
